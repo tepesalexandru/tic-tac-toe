@@ -2,8 +2,6 @@
 
 const { server, allClients } = require("./index.js");
 
-console.log("hello!");
-
 const socket = require("socket.io");
 const io = socket(server);
 
