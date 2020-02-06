@@ -9,8 +9,16 @@ const io = socket(server);
 io.on("connection", socket => {
   console.log("Made a new connection!");
 
+  // Default User settings
+  let newUser = {
+    id: socket.id,
+    currentlyPlaying: false,
+    opponentId: ""
+  };
+
   // Push the new connection in the array
-  allClients.push(socket);
+  //allClients.push(socket);
+  allClients.push(newUser);
 
   // Update player count
   io.sockets.emit("playerCount", allClients.length);
@@ -19,13 +27,15 @@ io.on("connection", socket => {
     console.log("Player disconnected!");
 
     // Remo the new connection from the array
-    const i = allClients.indexOf(socket);
+    const i = allClients.indexOf(newUser.id);
     allClients.splice(i, 1);
 
     // Update player count
     io.sockets.emit("playerCount", allClients.length);
   });
 });
+
+module.exports = { socket, allClients };
 
 /*var players = {},
   unmatched;
