@@ -1,6 +1,5 @@
-const url = window.location.origin;
-let socket = io.connect(url);
-// var socket = io.connect('http://localhost:5000/'),
+var socket = io('http://localhost:3000');
+
 myTurn = true, symbol;
 alert("hritik");//experiment
 
