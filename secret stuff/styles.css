@@ -9,7 +9,7 @@
   /* outline: 1px solid purple; */
   margin: 0;
   padding: 0;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 button:focus,input:focus, textarea:focus, select:focus,input {
@@ -47,6 +47,37 @@ h2 {
 }
 
 header {
-  background: linear-gradient(120deg ,#FF6565,#FFC692);
+  background: linear-gradient(45deg ,#FF6565,#FF9E67);
 }
 
+#room {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #FF7575;
+  border-radius: 1rem;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#room div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+#room p {
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 0.3em auto;
+}
+
+#room:nth-child(2n+2) {
+  background: #FF9E67;
+}
