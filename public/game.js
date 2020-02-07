@@ -1,4 +1,4 @@
-var socket = io('http://localhost:3000');
+/*var socket = io('http://localhost:3000');
 
 myTurn = true, symbol;
 
@@ -124,4 +124,4 @@ socket.on('opponent.left', function () {
 $(function () {
     $('.board button').attr('disabled', true);
     $(".cell").on("click", makeMove);
-});
+});*/
