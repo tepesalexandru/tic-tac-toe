@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Ultimate Tic Tac Toe</title>
+</head>
+<body>
+
+  <header class="flex flex-col items-center justify-center"> 
+    <h2 class="text-center text-white my-4 text-5xl md:text-6xl">Tic Tac Toe</h2>
+  </header>
+
+    <main>
+
+      <!-- User Options -->
+      <div class="flex flex-row justify-center text-red-100 text-xl font-semibold tracking-wide max-w-lg my-6 mx-auto">
+            <div id="nickname" class="bg-red-400 flex items-center justify-between w-full md:w-1/2 mx-2 px-2 rounded-full">
+              <input type="text" placeholder="Username" class="font-semibold mx-4 w-2/3">
+              <button class="float-right">
+                <svg class="h-6" width="30" height="37" viewBox="0 0 30 37" fill="none">
+                    <g clip-path="url(#clip0)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20.415 3.9908C19.6335 3.44359 18.5564 3.63352 18.0092 4.415L4.66234 23.4763C4.45109 23.778 4.3418 24.1393 4.35042 24.5075L4.53491 32.3894C4.53917 32.5716 4.62981 32.7408 4.77906 32.8454C4.93062 32.9515 5.1241 32.9779 5.29854 32.9162L12.6609 30.3149C13.0003 30.1949 13.2939 29.9719 13.5004 29.677L26.853 10.6075C27.4002 9.82599 27.2103 8.74888 26.4288 8.20168L20.415 3.9908ZM18.7167 4.9104C18.9903 4.51966 19.5289 4.4247 19.9196 4.6983L25.9334 8.90918C26.3241 9.18278 26.4191 9.72134 26.1455 10.1121L24.04 13.119L16.6113 7.91728L18.7167 4.9104ZM16.1159 8.62479L5.36984 23.9717C5.26422 24.1225 5.20957 24.3032 5.21388 24.4873L5.38899 31.9683L12.3731 29.5005C12.5429 29.4406 12.6896 29.329 12.7929 29.1816L23.5446 13.8265L16.1159 8.62479Z" fill="white" stroke="white" stroke-width="2"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0">
+                    <rect width="30" height="37" fill="white"/>
+                    </clipPath>
+                    </defs>
+                  </svg>
+              </button>
+             </div>
+          
+          <!-- Players Online-->
+
+            <div id="playersonline" class="bg-red-400 w-full md:w-1/2 mx-2 rounded-full text-center">
+              <p class="p-3">Online : <span>03</span></p>
+            </div>
+
+      </div>
+
+
+      <!-- Games -->
+
+      <div id="games">
+        
+      </div>
+    </main>
+
+</body>
+</html>

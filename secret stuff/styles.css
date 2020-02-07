@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|Nunito&display=swap');
+
+:root {
+  --p-font: 'Lobster', cursive;
+  --s-font: 'Nunito', sans-serif;
+}
+
+* {
+  /* outline: 1px solid purple; */
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+button:focus,input:focus, textarea:focus, select:focus,input {
+  outline: none !important;
+  background: transparent !important;
+}
+
+::-webkit-input-placeholder {
+  color:#FED7D7 !important;
+  font-size: 1rem !important;
+  font-weight: 400;
+}
+
+::-moz-placeholder {
+  color:#FED7D7 !important;
+  font-size: 1rem !important;
+}
+
+::-ms-placeholder {
+  color:#FED7D7 !important;
+  font-size: 1rem !important;
+}
+
+::placeholder {
+  color:#FED7D7 !important;
+  font-size: 1rem !important;
+}
+
+body {
+  font-family: var(--s-font);
+}
+
+h2 {
+  font-family: var(--p-font);
+}
+
+header {
+  background: linear-gradient(120deg ,#FF6565,#FFC692);
+}
+
