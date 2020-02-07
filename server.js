@@ -1,16 +1,13 @@
 /// Core file for Web Sockets (Socket.io)
 
-const {
-  server,
-  allClients
-} = require("./index.js");
+const { server, allClients } = require("./index.js");
 
 const socket = require("socket.io");
 const io = socket(server);
 
 // Handle new player connections / disconnections
 io.on("connection", socket => {
-  console.log("Made a new connection!");
+  //console.log("Made a new connection!");
 
   // Default User settings
   let newUser = {
@@ -22,6 +19,10 @@ io.on("connection", socket => {
   // Push the new connection in the array
   //allClients.push(socket);
   allClients.push(newUser);
+
+  for (let i = 0; i < allClients.length; i++) {
+    console.log(`${i}: ${allClients[i].id}`);
+  }
 
   // Update player count
   io.sockets.emit("playerCount", allClients.length);
@@ -43,8 +44,7 @@ module.exports = {
   allClients
 };
 
-
-var players = {},
+/*var players = {},
   unmatched;
 
 function joinGame(socket) {
@@ -54,11 +54,11 @@ function joinGame(socket) {
     // or it will be null if no  players are unmatched
     opponent: unmatched,
     // The symbol will become 'O' if the player is unmatched
-    symbol: 'X',
+    symbol: "X",
     // The socket that is associated with this player
     socket: socket
   };
-};
+}
 
 // Every other player is marked as 'unmatched', which means
 // there is no another player to pair them with yet. As soon
@@ -72,7 +72,6 @@ if (unmatched) {
   unmatched = socket.id;
 }
 
-
 // Returns the opponent socket
 function getOpponent(socket) {
   if (!players[socket.id].opponent) {
@@ -81,11 +80,11 @@ function getOpponent(socket) {
   return players[players[socket.id].opponent].socket;
 }
 
-io.on("connection", function (socket) {
+io.on("connection", function(socket) {
   console.log("Connection established...", socket.id);
   joinGame(socket);
 
- // Once the socket has an opponent, we can begin the game
+  // Once the socket has an opponent, we can begin the game
   if (getOpponent(socket)) {
     socket.emit("game.begin", {
       symbol: players[socket.id].symbol
@@ -95,8 +94,8 @@ io.on("connection", function (socket) {
     });
   }
 
-    // Listens for a move to be made and emits an event to both players after the move is completed
-  socket.on("make.move", function (data) {
+  // Listens for a move to be made and emits an event to both players after the move is completed
+  socket.on("make.move", function(data) {
     if (!getOpponent(socket)) {
       return;
     }
@@ -106,13 +105,10 @@ io.on("connection", function (socket) {
   });
 
   // Emit an event to the opponent when the player leaves
-  socket.on("disconnect", function () {
+  socket.on("disconnect", function() {
     if (getOpponent(socket)) {
       getOpponent(socket).emit("opponent.left");
     }
   });
 });
-
-// export {
-//   io
-// }
+*/
