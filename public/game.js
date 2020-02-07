@@ -1,7 +1,11 @@
 var socket = io.connect("http://localhost:3000");
 
 (myTurn = true), symbol;
-alert("hritik"); //experiment
+
+// Extract Room Name from URI Params
+const queryString = window.location.search;
+const roomNameURI = new URLSearchParams(queryString).get("room");
+alert(`Room ${roomNameURI} created.`);
 
 function getBoardState() {
   var obj = {}; // a object having where each attribute contains name of the cell
@@ -48,6 +52,11 @@ function renderTurnMessage() {
     $(".cell").removeAttr("disabled");
   }
 }
+
+socket.emit("roomCreated", {
+  name: roomNameURI
+});
+
 function makeMove(e) {
   e.preventDefault();
   // It's not your turn

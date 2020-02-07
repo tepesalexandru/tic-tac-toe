@@ -16,9 +16,13 @@ let allClients = [];
 // This array contains every room
 let allRooms = [];
 
+app.get("/rooms", (req, res) => {
+  res.send(allRooms);
+});
+
 // Export things that need to be used by other scripts
 
-module.exports = { server, allClients };
+module.exports = { server, allClients, allRooms };
 
 // Run the following scripts
 require("./server");

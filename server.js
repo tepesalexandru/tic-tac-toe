@@ -1,6 +1,6 @@
 /// Core file for Web Sockets (Socket.io)
 
-const { server, allClients } = require("./index.js");
+const { server, allClients, allRooms } = require("./index.js");
 
 const socket = require("socket.io");
 const io = socket(server);
@@ -36,6 +36,12 @@ io.on("connection", socket => {
 
     // Update player count
     io.sockets.emit("playerCount", allClients.length);
+  });
+
+  socket.on("roomCreated", data => {
+    allRooms.push(data.name);
+    console.log(`Room created! Name: ${data.name}`);
+    socket.broadcast.emit("roomCreated");
   });
 });
 
