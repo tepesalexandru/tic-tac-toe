@@ -1,0 +1,26 @@
+<html>
+<head>
+  <link href="style.css" rel="stylesheet" />
+  <title>tic tok toe</title>
+</head>
+
+<body>
+  Your Symbol: <div id="symbol">waiting...</div>
+  <div class="board">
+    <!--1strow--><button class="cell" id="a0"></button><button class="cell" id="a1"></button><button class="cell"
+      id="a2"></button>
+    <!--2ndrow--><button class="cell" id="b0"></button><button class="cell" id="b1"></button><button class="cell"
+      id="b2"></button>
+    <!--3rdrow--><button class="cell" id="c0"></button><button class="cell" id="c1"></button><button class="cell"
+      id="c2"></button>
+
+    <div id="messages">Waiting for opponent to join...</div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="game.js"></script>
+</body>
+
+</html>
