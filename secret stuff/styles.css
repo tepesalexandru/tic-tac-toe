@@ -6,10 +6,10 @@
 }
 
 * {
-  /* outline: 1px solid purple; */
   margin: 0;
   padding: 0;
-  line-height: 1.2;
+  line-height: 1;
+  /* outline: 1px dotted orangered; */
 }
 
 button:focus,input:focus, textarea:focus, select:focus,input {
@@ -18,24 +18,27 @@ button:focus,input:focus, textarea:focus, select:focus,input {
 }
 
 ::-webkit-input-placeholder {
-  color:#FED7D7 !important;
+  color:#BEE3F8 !important;
   font-size: 1rem !important;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 ::-moz-placeholder {
-  color:#FED7D7 !important;
+  color:#BEE3F8 !important;
   font-size: 1rem !important;
+  font-weight: 500;
 }
 
 ::-ms-placeholder {
-  color:#FED7D7 !important;
+  color:#BEE3F8 !important;
   font-size: 1rem !important;
+  font-weight: 500;
 }
 
 ::placeholder {
-  color:#FED7D7 !important;
+  color:#BEE3F8 !important;
   font-size: 1rem !important;
+  font-weight: 500;
 }
 
 body {
@@ -47,7 +50,7 @@ h2 {
 }
 
 header {
-  background: linear-gradient(45deg ,#FF6565,#FF9E67);
+  background: linear-gradient(120deg ,#6B9EFF,#5ACEFF);
 }
 
 #room {
@@ -55,12 +58,17 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #FF7575;
+  background: #6B9EFF;
   border-radius: 1rem;
   width: 100%;
   padding-top: 100%;
   overflow: hidden;
   position: relative;
+  transition: all 0.3s ease;
+}
+
+#room:hover {
+  transform: scale(0.95);
 }
 
 #room div {
@@ -71,13 +79,44 @@ header {
   bottom: 0;
 }
 
-
 #room p {
   text-align: center;
   font-size: 1.6rem;
   margin: 0.3em auto;
 }
 
-#room:nth-child(2n+2) {
-  background: #FF9E67;
+#room:nth-child(odd) {
+  background: #5ACEFF;
+}
+
+#players span , #nickname input {
+  display: inline;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#players div {
+  width: 48%;
+}
+
+#board button {
+  position: relative;
+  background: #6B9EFF;
+  padding-top: 100%;
+  border-radius: 1rem;
+}
+
+#board button:nth-child(even) {
+  background: #5ACEFF;
+}
+
+#board span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 6rem;
+  color: white;
+  font-weight: 900;
 }
