@@ -15,12 +15,7 @@ io.on("connection", socket => {
   };
 
   // Push the new connection in the array
-  //allClients.push(socket);
   allClients.push(newUser);
-
-  /*for (let i = 0; i < allClients.length; i++) {
-    console.log(`${i}: ${allClients[i].id}`);
-  }*/
 
   // Update player count
   io.sockets.emit("playerCount", allClients.length);
@@ -58,9 +53,19 @@ io.on("connection", socket => {
     console.log(allRooms[arrayIndex].players.length);
     if (allRooms[arrayIndex].players.length === 2) {
       //io.in(data.roomName).emit("startGame", "yes!");
-      io.sockets.in(data.roomName).emit("startGame");
+      io.to(`${allRooms[arrayIndex].players[0]}`).emit("mySymbol", "X");
+      io.to(`${allRooms[arrayIndex].players[1]}`).emit("mySymbol", "O");
+      io.sockets.in(data.roomName).emit("game.begin");
+
       console.log("Game has started!");
     }
+  });
+
+  socket.on("make.move", function(data) {
+    console.log("Move made by : ", data);
+    //socket.emit("move.made", data);
+    //getOpponent(socket).emit("move.made", data);
+    io.sockets.in(data.roomName).emit("move.made", data);
   });
 });
 
