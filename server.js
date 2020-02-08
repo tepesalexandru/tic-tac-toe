@@ -44,6 +44,12 @@ io.on("connection", socket => {
     console.log(`Room created! Name: ${data.name}`);
     socket.broadcast.emit("roomCreated");
   });
+
+  // Listening for room join requests
+  socket.on("join_room", data => {
+    socket.join(data);
+    console.log(`${socket.id} has joined ${data}`);
+  });
 });
 
 module.exports = {
