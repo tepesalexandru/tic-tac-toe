@@ -38,6 +38,7 @@ io.on("connection", socket => {
     io.sockets.emit("playerCount", allClients.length);
   });
 
+  // Listening to new room creations.
   socket.on("roomCreated", data => {
     allRooms.push(data.name);
     console.log(`Room created! Name: ${data.name}`);

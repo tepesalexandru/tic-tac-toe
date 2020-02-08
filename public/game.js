@@ -53,6 +53,7 @@ function renderTurnMessage() {
   }
 }
 
+// Send an emit that a new room has been created
 socket.emit("roomCreated", {
   name: roomNameURI
 });
