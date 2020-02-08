@@ -1,3 +1,5 @@
+import { response } from "express";
+
 const socket = io.connect("http://localhost:3000");
 
 // DOM Elements, they start with '__' for convention
@@ -17,8 +19,8 @@ __userBTN.addEventListener("click", () => {
 __createBTN.addEventListener("click", () => {
   // Send request to create room
   socket.emit("roomCreated", {
-    name: __newRoomName.value,
-    player: socket.id
+    name: __newRoomName.value
+    //player: socket.id
   });
   // Send a request to join the room
   joinRoom(__newRoomName.value);
@@ -26,7 +28,15 @@ __createBTN.addEventListener("click", () => {
 
 // Function to join a room
 function joinRoom(roomName) {
-  socket.emit("join_room", roomName);
+  /*let activeRooms = getRoomInfo(roomName);
+  if (activeRooms.players.length >= 2) {
+    console.log("Sorry, room is full.");
+  }*/
+
+  socket.emit("join_room", {
+    roomName,
+    player: socket.id
+  });
   window.location.href = `./game.html?room='${roomName}'`;
 }
 
@@ -37,26 +47,6 @@ socket.on("playerCount", count => {
 
 /// Display active rooms from Socket.io
 
-// NOT WORKING: This should show the new rooms without having to refresh the page.
-socket.on("createRoom", () => {
-  let activeRooms;
-  fetch("http://localhost:3000/rooms")
-    .then(response => response.json())
-    .then(data => {
-      activeRooms = data;
-      //console.log(activeRooms);
-      for (let i = 0; i < activeRooms.length; i++) {
-        const newRoom = document.createElement("div");
-        newRoom.innerHTML = `Room #${i}: ${
-          activeRooms[i]
-        } | Players: ${0} / ${2}`;
-        //newRoom.addEventListener("click", joinRoom(activeRooms[i]));
-        __activeRooms.appendChild(newRoom);
-        __activeRooms.appendChild(document.createElement("hr"));
-      }
-    });
-});
-
 // When the landing page loads, also load all the rooms.
 let activeRooms;
 fetch("http://localhost:3000/rooms")
@@ -65,12 +55,22 @@ fetch("http://localhost:3000/rooms")
     activeRooms = data;
     for (let i = 0; i < activeRooms.length; i++) {
       const newRoom = document.createElement("div");
-      newRoom.innerHTML = `Room #${i}: ${
-        activeRooms[i]
-      } | Players: ${0} / ${2}`;
-      //newRoom.addEventListener("click", joinRoom(activeRooms[i]));
-      //newRoom.onclick = joinRoom(activeRooms[i]);
+      newRoom.innerHTML = `<div onclick="joinRoom('${
+        activeRooms[i].roomName
+      }')">Room #${i}: ${activeRooms[i].roomName} | Players: ${
+        activeRooms[i].players.length
+      } / ${2}</div>`;
       __activeRooms.appendChild(newRoom);
       __activeRooms.appendChild(document.createElement("hr"));
     }
   });
+
+function getRoomInfo(roomName) {
+  fetch("http://localhost:3000/rooms")
+    .then(response => response.json())
+    .then(rooms => {
+      let arrayIndex = rooms.findIndex(obj => obj.roomName === roomName);
+      //allRooms[arrayIndex].players.push(data.player);
+      return rooms[arrayIndex];
+    });
+}

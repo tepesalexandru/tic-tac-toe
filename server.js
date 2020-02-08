@@ -40,12 +40,9 @@ io.on("connection", socket => {
 
   // Listening to new room creations.
   socket.on("roomCreated", data => {
-    let tempIndex = allRooms.indexOf(data.name);
-    let tempArray = allRooms[tempIndex];
-    tempArray.push(data.player);
     allRooms.push({
       roomName: data.name,
-      players: tempArray
+      players: []
     });
     console.log(`Room created! Name: ${data.name}`);
     socket.broadcast.emit("roomCreated");
@@ -53,8 +50,9 @@ io.on("connection", socket => {
 
   // Listening for room join requests
   socket.on("join_room", data => {
-    socket.join(data);
-    console.log(`${socket.id} has joined ${data}`);
+    socket.join(data.roomName);
+    let arrayIndex = allRooms.findIndex(obj => obj.roomName === data.roomName);
+    allRooms[arrayIndex].players.push(data.player);
   });
 });
 
