@@ -7,8 +7,6 @@ const io = socket(server);
 
 // Handle new player connections / disconnections
 io.on("connection", socket => {
-  //console.log("Made a new connection!");
-
   // Default User settings
   let newUser = {
     id: socket.id,

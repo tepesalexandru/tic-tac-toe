@@ -1,5 +1,3 @@
-import { response } from "express";
-
 const socket = io.connect("http://localhost:3000");
 
 // DOM Elements, they start with '__' for convention
@@ -27,11 +25,14 @@ __createBTN.addEventListener("click", () => {
 });
 
 // Function to join a room
-function joinRoom(roomName) {
-  /*let activeRooms = getRoomInfo(roomName);
+async function joinRoom(roomName) {
+  let activeRooms = await getRoomInfo(roomName);
+  console.log(getRoomInfo(roomName));
+  //console.log(activeRooms.players);
   if (activeRooms.players.length >= 2) {
     console.log("Sorry, room is full.");
-  }*/
+    return;
+  }
 
   socket.emit("join_room", {
     roomName,
@@ -65,12 +66,10 @@ fetch("http://localhost:3000/rooms")
     }
   });
 
-function getRoomInfo(roomName) {
-  fetch("http://localhost:3000/rooms")
-    .then(response => response.json())
-    .then(rooms => {
-      let arrayIndex = rooms.findIndex(obj => obj.roomName === roomName);
-      //allRooms[arrayIndex].players.push(data.player);
-      return rooms[arrayIndex];
-    });
+async function getRoomInfo(roomName) {
+  let response = await fetch("http://localhost:3000/rooms");
+  let rooms = await response.json();
+  let arrayIndex = await rooms.findIndex(obj => obj.roomName === roomName);
+  //console.log(await rooms[arrayIndex]);
+  return await rooms[arrayIndex];
 }
