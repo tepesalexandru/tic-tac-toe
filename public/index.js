@@ -26,18 +26,18 @@ __createBTN.addEventListener("click", () => {
 
 // Function to join a room
 async function joinRoom(roomName) {
-  let activeRooms = await getRoomInfo(roomName);
-  console.log(getRoomInfo(roomName));
+  //let activeRooms = await getRoomInfo(roomName);
+  //console.log(await roomName);
   //console.log(activeRooms.players);
-  if (activeRooms.players.length >= 2) {
+  /*if (activeRooms.players.length >= 2) {
     console.log("Sorry, room is full.");
     return;
-  }
+  }*/
 
-  socket.emit("join_room", {
+  /*socket.emit("join_room", {
     roomName,
     player: socket.id
-  });
+  });*/
   window.location.href = `./game.html?room='${roomName}'`;
 }
 
