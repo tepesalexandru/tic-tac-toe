@@ -63,8 +63,6 @@ io.on("connection", socket => {
 
   socket.on("make.move", function(data) {
     console.log("Move made by : ", data);
-    //socket.emit("move.made", data);
-    //getOpponent(socket).emit("move.made", data);
     io.sockets.in(data.roomName).emit("move.made", data);
   });
 });

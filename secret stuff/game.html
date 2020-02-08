@@ -1,82 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
-  <title>Ultimate Tic Tac Toe</title>
-</head>
-<body>
-
-  <header class="flex flex-col items-center justify-center"> 
-    <h2 class="text-center text-white my-2 text-5xl md:text-6xl">Tic Tac Toe</h2>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Ultimate Tic Tac Toe</title>
+  </head>
+  <body>
+    <header class="flex flex-col items-center justify-center">
+      <h2 class="text-center text-white my-2 text-5xl md:text-6xl">
+        Tic Tac Toe
+      </h2>
+    </header>
 
     <main>
       <div id="game" class="p-4 w-full">
-        
         <!-- Players -->
-        <div id="players" class="flex justify-between text-blue-100 text-xl font-semibold tracking-wide max-w-lg w-full my-4 mx-auto">
-
-          <div class="flex justify-between items-center py-3 px-4 md:px-6 bg-blue-400 rounded-full">
-            <span id="p1" class="w-5/6">Eclipse Nubbbbbbbbb</span><span class="float-right text-2xl">X</span>
+        <div
+          id="players"
+          class="flex justify-between text-blue-100 text-xl font-semibold tracking-wide max-w-lg w-full my-4 mx-auto"
+        >
+          <div
+            class="flex justify-between items-center py-3 px-4 md:px-6 bg-blue-400 rounded-full"
+          >
+            <span id="p1" class="w-5/6">Eclipse Nubbbbbbbbb</span
+            ><span class="float-right text-2xl">X</span>
           </div>
 
-          <div class="flex justify-between items-center py-3 px-4 md:px-6 bg-blue-400 rounded-full">
-            <span id="p2" class="w-5/6">Hritik Nub</span><span class="float-right text-2xl">O</span>
+          <div
+            class="flex justify-between items-center py-3 px-4 md:px-6 bg-blue-400 rounded-full"
+          >
+            <span id="p2" class="w-5/6">Hritik Nub</span
+            ><span class="float-right text-2xl">O</span>
           </div>
-
         </div>
 
         <!-- Messages -->
 
-        <div id="messages" class="text-center text-blue-400 max-w-md mx-auto text-xl mb-4">Waiting for opponent to join...</div>
+        <div
+          id="messages"
+          class="text-center text-blue-400 max-w-md mx-auto text-xl mb-4"
+        >
+          Waiting for opponent to join...
+        </div>
 
         <!-- Game -->
 
-        <div id="board" class="grid grid-cols-3 gap-4 m-2 mb-4 max-w-lg w-full mx-auto">
+        <div
+          id="board"
+          class="grid grid-cols-3 gap-4 m-2 mb-4 max-w-lg w-full mx-auto"
+        >
           <!--1strow-->
-          <button><span class="cell" id="a0"></span></button>
-          <button><span class="cell" id="a1"></span></button>
-          <button><span class="cell" id="a2"></span></button>
+          <button class="cell" id="a1"><span></span></button>
+          <button class="cell" id="a0"><span></span></button>
+          <button class="cell" id="a2"><span></span></button>
 
           <!--2ndrow-->
-          <button><span class="cell" id="b0"></span></button>
-          <button><span class="cell" id="b1"></span></button>
-          <button><span class="cell" id="b2"></span></button>
+          <button class="cell" id="b0"><span></span></button>
+          <button class="cell" id="b1"><span></span></button>
+          <button class="cell" id="b2"><span></span></button>
 
           <!--3rdrow-->
-          <button><span class="cell" id="c0"></span></button>
-          <button><span class="cell" id="c1"></span></button>
-          <button><span class="cell" id="c2"></span></button>
+          <button class="cell" id="c0"><span></span></button>
+          <button class="cell" id="c1"><span></span></button>
+          <button class="cell" id="c2"><span></span></button>
         </div>
 
         <!-- Actions -->
 
-        <div id="Actions" class="flex justify-center text-blue-100 text-xl font-semibold tracking-wide max-w-lg w-full my-2 md:my-6 mx-auto">
-
-          <div class="flex justify-between items-center py-3 px-4 mr-1 bg-blue-400 w-1/2 rounded-full">
+        <div
+          id="Actions"
+          class="flex justify-center text-blue-100 text-xl font-semibold tracking-wide max-w-lg w-full my-2 md:my-6 mx-auto"
+        >
+          <div
+            class="flex justify-between items-center py-3 px-4 mr-1 bg-blue-400 w-1/2 rounded-full"
+          >
             <span>Chat</span>
-            <svg class="h-5" width="39" height="38" viewBox="0 0 39 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9.33313 31.1823L2.7104 35.9162C2.63419 35.9707 2.54286 36 2.44919 36C2.20111 36 2 35.7989 2 35.5508V35.4603L2.48873 7.89364C2.54674 4.62191 5.21554 2 8.48779 2H31C34.3137 2 37 4.6863 37 8V24.0635C37 27.3772 34.3137 30.0635 31 30.0635H12.8222C11.571 30.0635 10.3511 30.4547 9.33313 31.1823Z" stroke="white" stroke-width="5"/>
+            <svg
+              class="h-5"
+              width="39"
+              height="38"
+              viewBox="0 0 39 38"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.33313 31.1823L2.7104 35.9162C2.63419 35.9707 2.54286 36 2.44919 36C2.20111 36 2 35.7989 2 35.5508V35.4603L2.48873 7.89364C2.54674 4.62191 5.21554 2 8.48779 2H31C34.3137 2 37 4.6863 37 8V24.0635C37 27.3772 34.3137 30.0635 31 30.0635H12.8222C11.571 30.0635 10.3511 30.4547 9.33313 31.1823Z"
+                stroke="white"
+                stroke-width="5"
+              />
             </svg>
           </div>
 
-          <div class="flex justify-between items-center py-3 px-4 ml-1 bg-blue-400 w-1/2 rounded-full">
+          <div
+            class="flex justify-between items-center py-3 px-4 ml-1 bg-blue-400 w-1/2 rounded-full"
+          >
             <span>Invite</span>
-            <svg class="h-5" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21.6094 10.16C22.2174 10.16 22.7134 10.368 23.0974 10.784C23.5134 11.168 23.7214 11.664 23.7214 12.272C23.7214 12.88 23.5134 13.392 23.0974 13.808C22.7134 14.192 22.2174 14.384 21.6094 14.384H14.1214V21.824C14.1214 22.432 13.9134 22.944 13.4974 23.36C13.1134 23.776 12.6174 23.984 12.0094 23.984C11.4014 23.984 10.8894 23.776 10.4734 23.36C10.0894 22.944 9.89738 22.432 9.89738 21.824V14.384H2.40938C1.80138 14.384 1.28938 14.192 0.873375 13.808C0.489375 13.392 0.297375 12.88 0.297375 12.272C0.297375 11.664 0.489375 11.168 0.873375 10.784C1.28938 10.368 1.80138 10.16 2.40938 10.16H9.89738V2.672C9.89738 2.064 10.0894 1.568 10.4734 1.184C10.8894 0.767999 11.4014 0.559999 12.0094 0.559999C12.6174 0.559999 13.1134 0.767999 13.4974 1.184C13.9134 1.568 14.1214 2.064 14.1214 2.672V10.16H21.6094Z" fill="white"/>
-              </svg>
-              
+            <svg
+              class="h-5"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.6094 10.16C22.2174 10.16 22.7134 10.368 23.0974 10.784C23.5134 11.168 23.7214 11.664 23.7214 12.272C23.7214 12.88 23.5134 13.392 23.0974 13.808C22.7134 14.192 22.2174 14.384 21.6094 14.384H14.1214V21.824C14.1214 22.432 13.9134 22.944 13.4974 23.36C13.1134 23.776 12.6174 23.984 12.0094 23.984C11.4014 23.984 10.8894 23.776 10.4734 23.36C10.0894 22.944 9.89738 22.432 9.89738 21.824V14.384H2.40938C1.80138 14.384 1.28938 14.192 0.873375 13.808C0.489375 13.392 0.297375 12.88 0.297375 12.272C0.297375 11.664 0.489375 11.168 0.873375 10.784C1.28938 10.368 1.80138 10.16 2.40938 10.16H9.89738V2.672C9.89738 2.064 10.0894 1.568 10.4734 1.184C10.8894 0.767999 11.4014 0.559999 12.0094 0.559999C12.6174 0.559999 13.1134 0.767999 13.4974 1.184C13.9134 1.568 14.1214 2.064 14.1214 2.672V10.16H21.6094Z"
+                fill="white"
+              />
+            </svg>
           </div>
-
         </div>
-          
       </div>
     </main>
 
-
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="game.js"></script>
+  </body>
 </html>
