@@ -40,7 +40,13 @@ io.on("connection", socket => {
 
   // Listening to new room creations.
   socket.on("roomCreated", data => {
-    allRooms.push(data.name);
+    let tempIndex = allRooms.indexOf(data.name);
+    let tempArray = allRooms[tempIndex];
+    tempArray.push(data.player);
+    allRooms.push({
+      roomName: data.name,
+      players: tempArray
+    });
     console.log(`Room created! Name: ${data.name}`);
     socket.broadcast.emit("roomCreated");
   });

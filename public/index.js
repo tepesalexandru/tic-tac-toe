@@ -14,15 +14,11 @@ __userBTN.addEventListener("click", () => {
   __username.innerHTML = __userInput.value;
 });
 
-// Update the href link value based on the input field value
-__newRoomName.addEventListener("keyup", () => {
-  //__createHREF.href = `./game.html?room='${__newRoomName.value}'`;
-});
-
 __createBTN.addEventListener("click", () => {
   // Send request to create room
   socket.emit("roomCreated", {
-    name: __newRoomName.value
+    name: __newRoomName.value,
+    player: socket.id
   });
   // Send a request to join the room
   joinRoom(__newRoomName.value);
