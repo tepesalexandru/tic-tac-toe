@@ -38,10 +38,17 @@ io.on("connection", socket => {
     io.sockets.emit("playerCount", allClients.length);
   });
 
+  // Listening to new room creations.
   socket.on("roomCreated", data => {
     allRooms.push(data.name);
     console.log(`Room created! Name: ${data.name}`);
     socket.broadcast.emit("roomCreated");
+  });
+
+  // Listening for room join requests
+  socket.on("join_room", data => {
+    socket.join(data);
+    console.log(`${socket.id} has joined ${data}`);
   });
 });
 
