@@ -7,16 +7,19 @@ let mySymbol;
 const __symbol = document.querySelector("#symbol");
 const __leaveBTN = document.querySelector("#leaveBtn");
 
+console.log(__leaveBTN);
+
 // Extract Room Name from URI Params
 const queryString = window.location.search;
 const roomNameURI = new URLSearchParams(queryString).get("room");
-let fixedRoomName = roomName.replace(/'/g, "");
+let fixedRoomName = roomNameURI.replace(/'/g, "");
 
 __leaveBTN.addEventListener("click", () => {
   socket.emit("leftRoom", {
     player: socket.id,
     room: fixedRoomName
   });
+  window.location.href = "./index.html";
 });
 
 socket.on("connect", () => {
