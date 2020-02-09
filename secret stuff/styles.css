@@ -3,42 +3,55 @@
 :root {
   --p-font: 'Lobster', cursive;
   --s-font: 'Nunito', sans-serif;
+  --p-color: #12c2e9;
+  --s-color: #f64f59;
+  --t-color: #FFFFFF;
+  --body-color: #FFFFFF;
 }
 
 * {
   margin: 0;
   padding: 0;
   line-height: 1;
+  letter-spacing: 0.05rem;
   /* outline: 1px dotted orangered; */
 }
 
-button:focus,input:focus, textarea:focus, select:focus,input {
+i {
+  font-size: 2.25rem !important;
+}
+
+body {
+  background: var(--body-color);
+}
+
+button:focus , input:focus , textarea:focus , select:focus , input {
   outline: none !important;
   background: transparent !important;
 }
 
 ::-webkit-input-placeholder {
-  color:#BEE3F8 !important;
+  color: var(--t-color) !important;
   font-size: 1rem !important;
-  font-weight: 500;
+  opacity: 75%;
 }
 
 ::-moz-placeholder {
-  color:#BEE3F8 !important;
+  color: var(--t-color) !important;
   font-size: 1rem !important;
-  font-weight: 500;
+  opacity: 75%;
 }
 
 ::-ms-placeholder {
-  color:#BEE3F8 !important;
+  color: var(--t-color) !important;
   font-size: 1rem !important;
-  font-weight: 500;
+  opacity: 75%;
 }
 
 ::placeholder {
-  color:#BEE3F8 !important;
+  color: var(--t-color) !important;
   font-size: 1rem !important;
-  font-weight: 500;
+  opacity: 75%;
 }
 
 body {
@@ -47,18 +60,15 @@ body {
 
 h2 {
   font-family: var(--p-font);
+  letter-spacing: initial;
 }
 
 header {
-  background: linear-gradient(120deg ,#6B9EFF,#5ACEFF);
+  background: linear-gradient(150deg , var(--p-color) , var(--s-color));
 }
 
 #room {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #6B9EFF;
+  background: var(--p-color);
   border-radius: 1rem;
   width: 100%;
   padding-top: 100%;
@@ -67,11 +77,8 @@ header {
   transition: all 0.3s ease;
 }
 
-#room:hover {
-  transform: scale(0.95);
-}
-
 #room div {
+  overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
@@ -79,14 +86,26 @@ header {
   bottom: 0;
 }
 
-#room p {
-  text-align: center;
-  font-size: 1.6rem;
-  margin: 0.3em auto;
+#room div p {
+  width: 100%;
 }
 
-#room:nth-child(odd) {
-  background: #5ACEFF;
+#room div p:nth-child(2) {
+  height: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#room:nth-child(even) , #board button:nth-child(even) {
+  background: var(--s-color);
+}
+
+#messages {
+  color: var(--p-color);
+}
+
+.text-color , i {
+  color: var(--t-color);
 }
 
 #players span , #nickname input , #playerCount {
@@ -96,19 +115,16 @@ header {
   text-overflow: ellipsis;
 }
 
-#players div {
+#players div , #actions div , #user div {
   width: 48%;
+  background: var(--p-color);
 }
 
 #board button {
   position: relative;
-  background: #6B9EFF;
+  background: var(--p-color);
   padding-top: 100%;
   border-radius: 1rem;
-}
-
-#board button:nth-child(even) {
-  background: #5ACEFF;
 }
 
 #board span {

@@ -1,84 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-    <title>Ultimate Tic Tac Toe</title>
-  </head>
-  <body>
-    <header class="flex flex-col items-center justify-center">
-      <h2 class="text-center text-white my-2 text-5xl md:text-6xl">
-        Tic Tac Toe
-      </h2>
-    </header>
 
-    <main>
-      <!-- User Options -->
-      <div
-        class="flex justify-center text-white text-xl font-semibold tracking-wide max-w-lg px-2 my-6 mx-auto"
-      >
-        <div
-          id="nickname"
-          class="bg-blue-400 flex items-center justify-between w-1/2 px-2 mx-2 rounded-full"
-        >
-          <input
-            type="text"  
-            id="userInput" 
-            placeholder="Username"
-            class="font-semibold mx-4 w-full"
-            required
-          />
-          <button id="sendUsername" class="float-right">
-            <svg
-              class="h-5 w-6 mx-1 md:mx-2" 
-              width="99" 
-              height="81" 
-              viewBox="0 0 99 81" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg">
-                <path 
-                fill-rule="evenodd" 
-                clip-rule="evenodd" 
-                d="M87.4781 9.30088C88.3257 10.0091 88.4387 11.2704 87.7305 12.118L34.3439 76.0137C33.5856 76.9212 32.2098 76.9762 31.3816 76.1322L7.84094 52.1428C7.0673 51.3544 7.07926 50.0881 7.86765 49.3145L15.7189 41.6101C16.5073 40.8365 17.7736 40.8484 18.5472 41.6368L30.4889 53.8061C31.3172 54.6502 32.693 54.5952 33.4512 53.6877L76.2196 2.50036C76.9278 1.65272 78.1891 1.5397 79.0368 2.24793L87.4781 9.30088Z" 
-                fill="white"/>
-              </svg> 
-          </button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <link href='https://unpkg.com/boxicons@2.0.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Ultimate Tic Tac Toe</title>
+</head>
 
-        <!-- Players Online-->
+<body>
+  <header class="flex flex-col items-center justify-center">
+    <h2 class="text-center text-color my-2 text-5xl md:text-6xl">
+      Tic Tac Toe
+    </h2>
+  </header>
 
-        <div
-          id="playersonline"
-          class="bg-blue-400 w-1/2 mx-2 rounded-full text-center"
-        >
-          <p class="p-3">Online : <span id="playerCount">00</span></p>
+  <main>
+
+    <!-- User Options -->
+
+    <div id="user"
+      class="flex justify-between text-color text-xl font-semibold max-w-lg w-full px-2 my-8 mx-auto">
+      <div class="flex items-center justify-between py-2 px-4 mx-2 rounded-full">
+        <input type="text" id="userInput" placeholder="Username" class="font-semibold mx-1 w-full" required />
+        <button id="sendUsername">
+          <i class='bx bx-right-arrow-alt'></i>
+        </button>
+      </div>
+
+      <!-- Players Online-->
+
+      <div class="flex items-center justify-center mx-2 rounded-full text-center">
+        <p class="py-2 px-4">Online : <span id="playerCount">00</span></p>
+      </div>
+    </div>
+
+    <!-- Games -->
+
+    <section id="activeRooms" class="text-color font-bold grid grid-cols-2 md:grid-cols-3 gap-5 max-w-2xl px-4 mx-auto">
+
+      <div onclick="joinRoom('${activeRooms[i].roomName}')" id="room" class="transform hover:scale-95">
+        <div class="flex flex-col justify-between items-center rounded text-center p-4">
+          <p class="opacity-75">Public</p>
+          <p id="room-name" class="text-lg">Eclipse Nub's Roommmmmmmmmmmmmmmmmmmmmmmmmmm</p>
+          <p class="opacity-75">Players : 02</p>
         </div>
       </div>
 
-      <!-- Games -->
+    </section>
 
-      <section
-        id="activeRooms"
-        class="text-white font-bold grid grid-cols-2 md:grid-cols-3 gap-5 max-w-2xl px-4 mx-auto"
-      >
-      </section>
+    <input type="text" placeholder="Room Name" id="roomName" />
+    <button id="createRoomBtn">
+      <p id="createRoom">Create Room</p>
+    </button>
+  </main>
 
-      <input type="text" id="userInput" placeholder="Enter username..." />
-      <button id="sendUsername">Change Username</button>
-      <h3 id="username">Your name: username</h3>
-      <h3 id="playerCount">Players online: 0</h3>
-      <input type="text" placeholder="Room Name" id="roomName" />
-      <button id="createRoomBtn">
-        <p id="createRoom">Create Room</p>
-      </button>
-    </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script src="index.js"></script>
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script src="index.js"></script>
+</body>
+
 </html>
