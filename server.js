@@ -72,6 +72,7 @@ io.on("connection", socket => {
     allRooms[arrayIndex].players = allRooms[arrayIndex].players.filter(
       e => e !== data.player
     );
+    io.to(`${data.room}`).emit("opponent.left");
   });
 });
 
