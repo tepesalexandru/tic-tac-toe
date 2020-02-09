@@ -89,7 +89,7 @@ header {
   background: #5ACEFF;
 }
 
-#players span , #nickname input {
+#players span , #nickname input , #playerCount {
   display: inline;
   overflow: hidden;
   white-space: nowrap;

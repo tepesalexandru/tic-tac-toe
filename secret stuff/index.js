@@ -43,7 +43,7 @@ async function joinRoom(roomName) {
 
 // Players online count
 socket.on("playerCount", count => {
-  __playerCount.innerHTML = `Players online: ${count}`;
+  __playerCount.innerHTML = `${count}`;
 });
 
 /// Display active rooms from Socket.io
