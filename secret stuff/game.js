@@ -66,4 +66,5 @@ socket.on("connect", () => {
 socket.on("opponent.left", function() {
   $("#messages").text("Your opponent left the game.");
   $(".cell").attr("disabled", true);
+  $(".cell").text("");
 });
