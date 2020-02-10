@@ -10,8 +10,6 @@ const __activeRooms = document.querySelector("#activeRooms");
 const __createBTN = document.querySelector("#createRoom");
 const __passwordCheck = document.querySelector(".check");
 
-let isPrivate = __passwordCheck.classList.contains("checked") ? true : false;
-
 // Update the user's handle by clicking on the button
 __userBTN.addEventListener("click", () => {
   __username.innerHTML = __userInput.value;
@@ -19,6 +17,7 @@ __userBTN.addEventListener("click", () => {
 
 __createBTN.addEventListener("click", async () => {
   // Send request to create room
+  let isPrivate = __passwordCheck.classList.contains("checked");
   socket.emit("roomCreated", {
     name: __newRoomName.value,
     private: isPrivate
@@ -56,7 +55,25 @@ function displayAllRooms() {
       activeRooms = data;
       for (let i = 0; i < activeRooms.length; i++) {
         const newRoom = document.createElement("div");
-        newRoom.innerHTML = `<div
+        if (activeRooms[i].private) {
+          newRoom.innerHTML = `<div
+          onclick="enterPrivate()"
+          id="room"
+          class="transform hover:scale-95"
+        >
+          <div
+            class="flex flex-col justify-between items-center rounded text-center p-4"
+          >
+          <p class="opacity-75"><i class="bx bx-lock-alt"></i></p>
+          <p id="room-name" class="text-xl">
+              Room #${i + 1}:<br>
+              ${activeRooms[i].roomName}
+            </p>
+            <p class="opacity-75">${activeRooms[i].players.length}/2 Players</p>
+          </div>
+        </div>`;
+        } else {
+          newRoom.innerHTML = `<div
           onclick="joinRoom('${activeRooms[i].roomName}')"
           id="room"
           class="transform hover:scale-95"
@@ -64,16 +81,26 @@ function displayAllRooms() {
           <div
             class="flex flex-col justify-between items-center rounded text-center p-4"
           >
-            <p class="opacity-75"><i class="bx bx-lock-alt"></i></p>
-            <p id="room-name" class="text-xl">
+          <p class="opacity-75"><i class="bx bx-user"></i></p>
+          <p id="room-name" class="text-xl">
+              Room #${i + 1}:<br>
               ${activeRooms[i].roomName}
             </p>
             <p class="opacity-75">${activeRooms[i].players.length}/2 Players</p>
           </div>
         </div>`;
+        }
+
         __activeRooms.appendChild(newRoom);
       }
     });
+}
+
+// Private Room Request
+function enterPrivate() {
+  eRoom();
+  const __passwordField = document.querySelector("#passwordField");
+  const __joinPrivateBTN = document.querySelector("#joinPrivateBtn");
 }
 
 // When the landing page loads, also load all the rooms.
@@ -85,7 +112,6 @@ async function getRoomInfo(roomName) {
   //console.log(await rooms[arrayIndex]);
   return await rooms[arrayIndex];
 }
-
 /// Change Theme
 
 const THEMES = ["DEFAULT", "SOMETHING"];

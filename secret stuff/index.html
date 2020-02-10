@@ -56,7 +56,7 @@
     <!-- Create Room Button -->
 
     <div id="bottom-btn" class="fixed bottom-0 flex justify-center items-end h-40 w-full">
-      <button id="createRoom" onclick="panimation()"
+      <button onclick="panimation()"
         class="py-4 px-8 text-xl text-color font-bold my-4 rounded-full transform hover:scale-95">New Game</button>
     </div>
 
@@ -79,7 +79,7 @@
 
           <label class="flex flex-col text-xs font-bold p-color mt-2" for="roomName">
             ROOM NAME
-            <input class="text-xl font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="text">
+            <input id="roomName" class="text-xl font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="text">
           </label>
 
           <label class="text-xs font-bold p-color my-2" for="password">
@@ -92,7 +92,7 @@
 
         </form>
         
-        <button type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
+        <button  id="createRoom" type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
           Create Room
         </button>
       </div>
@@ -104,8 +104,8 @@
     <div class="enterRoom z-20 w-full max-w-md px-3">
       <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
         <label class="text-xs font-bold p-color my-2" for="enterPassword">ENTER PASSWORD</label>
-        <input class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="password">
-        <button type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
+        <input id="passwordField" class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="password">
+        <button id="joinPrivateBtn" type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
           Join
         </button>
       </div>
@@ -149,6 +149,7 @@
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script src="./js/helper_functions/JoinRoom.js"></script>
   <script src="index.js"></script>
 </body>
 
