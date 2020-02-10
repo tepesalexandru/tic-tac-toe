@@ -97,5 +97,5 @@ if (localStorage.getItem("MY_THEME") == null) {
 }
 localStorage.setItem("MY_THEME", THEMES[1]);
 if (localStorage.getItem("MY_THEME") === THEMES[1]) {
-  root.style.setProperty("--p-color", "#ff0000");
+  //root.style.setProperty("--p-color", "#ff0000");
 }
