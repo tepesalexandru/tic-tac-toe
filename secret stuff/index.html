@@ -61,7 +61,7 @@
 
     <!-- Room Options -->
 
-    <div onclick="panimation()"" class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen bg-indigo-600"></div>
+    <div onclick="panimation()" class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen bg-indigo-600"></div>
 
     <!-- Popup -->
 
@@ -74,17 +74,17 @@
 
         <p class="p-color text-xl font-bold my-4 mx-auto opacity-75">OR</p>
 
-        <form class="border-2 flex flex-col p-4 w-full max-w-md rounded-lg" action="">
+        <form class="border-2 border-gray-400 flex flex-col p-4 w-full max-w-md rounded-lg" action="">
 
           <label class="flex flex-col text-xs font-bold p-color mt-2" for="roomName">
             ROOM NAME
-            <input class="text-xl font-semibold h-full border-2 rounded p-2 my-2" type="text">
+            <input class="text-xl font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="text">
           </label>
 
           <label class="text-xs font-bold p-color my-2" for="password">
             PASSWORD
             <div class="flex items-center justify-between relative my-2">
-              <div onclick="checked()" class="cursor-pointer border-2 p-2 mr-2 rounded"><i class='bx bx-check check p-color'></i></div>
+              <div onclick="checked()" class="cursor-pointer border-2 border-gray-400 p-2 mr-2 rounded"><i class='bx bx-check check p-color'></i></div>
               <input class="password font-semibold text-xl p-2 border-2 rounded w-full" type="password" name="password" id="">
             </div>
           </label>
@@ -96,16 +96,9 @@
         </button>
       </div>
 
-      <p class="mx-auto p-color opacity-50 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
+      <p class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
     </div>
 
-
-
-    <!-- Testing Stuff -->
-    <!-- <input type="text" placeholder="Room Name" id="roomName" />
-    <button id="createRoomBtn">
-      <p id="createRoom">Create Room</p>
-    </button> -->
   </main>
 
   <script>

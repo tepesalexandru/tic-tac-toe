@@ -22,7 +22,7 @@
     
       <!-- Players -->
 
-      <div id="players" class="flex justify-between text-color text-lg font-semibold max-w-lg w-full px-2 my-4 mx-auto">
+      <div id="players" class="flex justify-between text-color text-lg font-semibold max-w-lg w-full my-4 mx-auto">
         <div class="flex justify-between items-center py-2 px-5 rounded-full">
           <span id="p1" class="w-5/6">Eclipse Nub</span>
           <i class="bx bx-x"></i>
@@ -33,19 +33,19 @@
           <i class="bx bx-radio-circle"></i>
         </div>
       </div>
+       <!-- Messages -->
 
-      <!-- Messages -->
-
-      <div id="messages" class="text-center max-w-md mx-auto text-xl mb-4">
+       <div id="messages" class="text-center text-color font-semibold max-w-lg w-full mx-auto text-xl my-4 py-3 px-5 rounded-full">
         Waiting for opponent to join...
       </div>
 
+
       <!-- Game -->
 
-      <div id="board" class="grid grid-cols-3 gap-4 m-2 mb-6 max-w-lg w-full mx-auto">
+      <div id="board" class="grid grid-cols-3 gap-4 mx-2 mt-4 mb-6 max-w-lg w-full mx-auto">
         <!--1strow-->
-        <button class="cell" id="a1"><span></span></button>
         <button class="cell" id="a0"><span></span></button>
+        <button class="cell" id="a1"><span></span></button>
         <button class="cell" id="a2"><span></span></button>
 
         <!--2ndrow-->
@@ -62,32 +62,63 @@
       <!-- Actions -->
 
       <div id="actions" class="flex justify-between text-color text-lg sm:text-xl font-semibold max-w-lg w-full my-2 sm:my-6 mx-auto">
-        <div class="flex justify-between items-center py-2 px-5 rounded-full">
+        <div onclick="panimation()" class="flex justify-between items-center py-2 px-4 rounded-full">
           <span>Chat</span>
           <i class="bx bx-message-square-dots"></i>
         </div>
 
-        <div class="flex justify-between items-center py-2 px-5 rounded-full">
+        <div class="flex justify-between items-center py-2 px-4 rounded-full">
           <span>Invite</span>
           <i class="bx bx-user-plus"></i>
         </div>
       </div>
 
       <div id="actions" class="flex justify-between text-color text-lg sm:text-xl font-semibold max-w-lg w-full my-2 sm:my-6 mx-auto">
-        <div class="flex justify-between items-center py-2 px-5 rounded-full">
+        <div class="flex justify-between items-center py-2 px-4 rounded-full">
           <span>Rematch</span>
           <i class='bx bx-reset'></i>
         </div>
 
-        <div class="flex justify-between items-center py-2 px-5 rounded-full">
+        <div class="flex justify-between items-center py-2 px-4 rounded-full">
           <span>Exit</span>
           <i class='bx bx-exit' ></i>
         </div>
       </div>
-      
-  </main>
-  <button id="leaveBtn" class="text-black">Leave room</button>
 
+      <!-- Chat -->
+
+      <div onclick="panimation()" class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen bg-indigo-600"></div>
+        <div class="popup z-20 w-full max-w-lg p-4">
+
+          <div id="chat" class="flex flex-col justify-center items-around text-center p-4 shadow-lg rounded-lg">
+
+            <h1 class="text-4xl font-semibold p-color mb-4">Chat Room</h1>
+
+              <div id="chat-window" class="mb-4 rounded-lg">
+                <div id="output"></div>
+                <div id="feedback"></div>
+              </div>
+
+              <div id="message-box" class="flex justify-between w-full rounded-full px-2">
+                <input id="message" type="text" placeholder="Message" class="text-xl font-semibold p-2"/>
+                <button id="send"><i class='bx bx-send p-color ml-2'></i></button>
+              </div>
+
+        </div>
+        <p class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
+      </div>
+  </main>
+  
+  <script>
+    var back = document.querySelector('.roomOptions');
+    var popup = document.querySelector('.popup');
+    var scoreCard = document.querySelector('.scoreCard');
+
+    function panimation() {
+      back.classList.toggle('active');
+      popup.classList.toggle('pactive');
+    }
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

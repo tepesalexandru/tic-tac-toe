@@ -3,10 +3,10 @@
 :root {
   --p-font: 'Lobster', cursive;
   --s-font: 'Nunito', sans-serif;
-  --p-color: #3a7cf8;
-  --s-color: #4accff;
-  --t-color: #FFFFFF;
-  --body-color: rgb(255, 255, 255);
+  --p-color: #FF5F6D;
+  --s-color: #FFC371;
+  --t-color: #ffffff;
+  --body-color: #ffffff;
 }
 
 * {
@@ -15,7 +15,6 @@
   line-height: 1;
   letter-spacing: 0.05rem;
   transition: all 200ms ease-out;
-  /* outline: 1px dotted orangered; */
 }
 
 i {
@@ -34,6 +33,10 @@ i {
 
 body {
   background: var(--body-color);
+}
+
+.p-color {
+  color: var(--p-color);
 }
 
 button:focus {
@@ -116,10 +119,6 @@ header {
   background: var(--s-color);
 }
 
-#messages , .p-color {
-  color: var(--p-color);
-}
-
 .text-color , i {
   color: var(--t-color);
 }
@@ -133,6 +132,11 @@ header {
 
 #players div , #actions div , #user div {
   width: 48%;
+  background: var(--p-color);
+  opacity: 80%;
+}
+
+#messages {
   background: var(--p-color);
   opacity: 80%;
 }
@@ -205,8 +209,46 @@ header {
 
 .password {
   pointer-events: none;
+  opacity: 50%;
+  border: 2px solid #cbd5e0;
 }
 
 .allowed {
   pointer-events: initial;
+  opacity: 100%;
+}
+
+.unavailable {
+  pointer-events: none;
+  opacity: 50%;
+}
+
+#chat-border {
+  border: 2px solid var(--p-color)
+}
+
+#chat-window {
+  height: 60vh;
+  border: 2px solid var(--p-color);
+  border-radius: 1rem;
+}
+
+#message-box {
+  border: 2px solid var(--p-color);
+}
+
+#message-box input::placeholder {
+  color: var(--p-color) !important;
+}
+
+#message-box input::ms-placeholder {
+  color: var(--p-color) !important;
+}
+
+#message-box input::moz-placeholder {
+  color: var(--p-color) !important;
+}
+
+#message-box input::-webkit-input-placeholder {
+  color: var(--p-color) !important;
 }
