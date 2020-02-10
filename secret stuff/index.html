@@ -26,7 +26,7 @@
 
     <div id="user" class="flex justify-between text-color text-xl font-semibold max-w-lg w-full px-2 my-8 mx-auto">
       <div class="flex items-center justify-between py-2 px-4 mx-2 rounded-full">
-        <input type="text" id="userInput" placeholder="Username" class="font-semibold mx-1 w-full" required />
+        <input autocomplete="off" type="text" id="userInput" placeholder="Username" class="font-semibold mx-1 w-full" required />
         <button id="sendUsername">
           <i class='bx bx-right-arrow-alt'></i>
         </button>
@@ -79,14 +79,14 @@
 
           <label class="flex flex-col text-xs font-bold p-color mt-2" for="roomName">
             ROOM NAME
-            <input class="text-xl font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="text">
+            <input autocomplete="off" class="text-xl font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="text">
           </label>
 
           <label class="text-xs font-bold p-color my-2" for="password">
             PASSWORD
             <div class="flex items-center justify-between relative my-2">
               <div onclick="checked()" class="cursor-pointer border-2 border-gray-400 p-2 mr-2 rounded"><i class='bx bx-check check p-color'></i></div>
-              <input class="password font-semibold text-xl p-2 border-2 rounded w-full" type="password" name="password" id="">
+              <input autocomplete="off" class="password font-semibold text-xl p-2 border-2 rounded w-full" type="password" name="password" id="">
             </div>
           </label>
 
@@ -100,11 +100,12 @@
       <p class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
     </div>
 
+<!-- Enter Room -->
 
     <div class="enterRoom z-20 w-full max-w-md px-3">
       <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
         <label class="text-xs font-bold p-color my-2" for="enterPassword">ENTER PASSWORD</label>
-        <input class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="password">
+        <input autocomplete="off" class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="password">
         <button type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
           Join
         </button>
