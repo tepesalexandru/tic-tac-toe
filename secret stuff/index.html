@@ -8,6 +8,7 @@
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
   <link href='https://unpkg.com/boxicons@2.0.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="shortcut icon" href="./logo.png" type="image/x-icon">
   <title>Ultimate Tic Tac Toe</title>
 </head>
 
@@ -61,7 +62,7 @@
 
     <!-- Room Options -->
 
-    <div onclick="panimation()" class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen bg-indigo-600"></div>
+    <div onclick="remove()" class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen bg-indigo-600"></div>
 
     <!-- Popup -->
 
@@ -99,23 +100,49 @@
       <p class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
     </div>
 
+
+    <div class="enterRoom z-20 w-full max-w-md px-3">
+      <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
+        <label class="text-xs font-bold p-color my-2" for="enterPassword">ENTER PASSWORD</label>
+        <input class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="password">
+        <button type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
+          Join
+        </button>
+      </div>
+      <p class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
+    </div>
+
+
+
   </main>
 
   <script>
     var back = document.querySelector('.roomOptions');
     var popup = document.querySelector('.popup');
+    var check = document.querySelector('.check');
+    var password = document.querySelector('.password');
+    var enterRoom = document.querySelector('.enterRoom');
+
+
+    function remove() {
+      back.classList.remove('active');
+      popup.classList.remove('pactive');
+      enterRoom.classList.remove('pactive');
+    }
 
     function panimation() {
       back.classList.toggle('active');
       popup.classList.toggle('pactive');
     }
 
-    var check = document.querySelector('.check');
-    var password = document.querySelector('.password');
-
     function checked() {
       check.classList.toggle('checked');
       password.classList.toggle('allowed');
+    }
+
+    function eRoom() {
+      back.classList.toggle('active');
+      enterRoom.classList.toggle('pactive');
     }
   </script>
 
