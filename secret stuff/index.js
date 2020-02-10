@@ -8,6 +8,9 @@ const __userBTN = document.querySelector("#sendUsername");
 const __newRoomName = document.querySelector("#roomName");
 const __activeRooms = document.querySelector("#activeRooms");
 const __createBTN = document.querySelector("#createRoom");
+const __passwordCheck = document.querySelector(".check");
+
+let isPrivate = __passwordCheck.classList.contains("checked") ? true : false;
 
 // Update the user's handle by clicking on the button
 __userBTN.addEventListener("click", () => {
@@ -17,7 +20,8 @@ __userBTN.addEventListener("click", () => {
 __createBTN.addEventListener("click", async () => {
   // Send request to create room
   socket.emit("roomCreated", {
-    name: __newRoomName.value
+    name: __newRoomName.value,
+    private: isPrivate
     //player: socket.id
   });
   // Send a request to join the room
@@ -80,4 +84,18 @@ async function getRoomInfo(roomName) {
   let arrayIndex = await rooms.findIndex(obj => obj.roomName === roomName);
   //console.log(await rooms[arrayIndex]);
   return await rooms[arrayIndex];
+}
+
+/// Change Theme
+
+const THEMES = ["DEFAULT", "SOMETHING"];
+
+const root = document.documentElement;
+
+if (localStorage.getItem("MY_THEME") == null) {
+  localStorage.setItem("MY_THEME", THEMES[0]);
+}
+localStorage.setItem("MY_THEME", THEMES[1]);
+if (localStorage.getItem("MY_THEME") === THEMES[1]) {
+  root.style.setProperty("--p-color", "#ff0000");
 }

@@ -33,6 +33,7 @@ io.on("connection", socket => {
   socket.on("roomCreated", data => {
     allRooms.push({
       roomName: data.name,
+      private: data.private,
       players: [],
       symbol: "X",
       full: false,
