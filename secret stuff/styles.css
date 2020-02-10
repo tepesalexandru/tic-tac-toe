@@ -109,6 +109,7 @@ header {
   height: 50%;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: break-word;
 }
 
 #room:nth-child(even) , #board button:nth-child(even) {
