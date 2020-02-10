@@ -7,39 +7,27 @@ const __userInput = document.querySelector("#userInput");
 const __userBTN = document.querySelector("#sendUsername");
 const __newRoomName = document.querySelector("#roomName");
 const __activeRooms = document.querySelector("#activeRooms");
-const __createBTN = document.querySelector("#createRoomBtn");
+const __createBTN = document.querySelector("#createRoom");
 
 // Update the user's handle by clicking on the button
 __userBTN.addEventListener("click", () => {
   __username.innerHTML = __userInput.value;
 });
 
-__createBTN.addEventListener("click", () => {
+__createBTN.addEventListener("click", async () => {
   // Send request to create room
   socket.emit("roomCreated", {
     name: __newRoomName.value
     //player: socket.id
   });
   // Send a request to join the room
-  joinRoom(__newRoomName.value);
-});
-
-// Function to join a room
-async function joinRoom(roomName) {
-  //let activeRooms = await getRoomInfo(roomName);
-  //console.log(await roomName);
-  //console.log(activeRooms.players);
-  /*if (activeRooms.players.length >= 2) {
+  let activeRooms = await getRoomInfo(__newRoomName.value);
+  if (activeRooms.players.length >= 2) {
     console.log("Sorry, room is full.");
     return;
-  }*/
-
-  /*socket.emit("join_room", {
-    roomName,
-    player: socket.id
-  });*/
-  window.location.href = `./game.html?room='${roomName}'`;
-}
+  }
+  joinRoom(__newRoomName.value);
+});
 
 // Players online count
 socket.on("playerCount", count => {
@@ -56,18 +44,22 @@ fetch("http://localhost:3000/rooms")
     activeRooms = data;
     for (let i = 0; i < activeRooms.length; i++) {
       const newRoom = document.createElement("div");
-      newRoom.innerHTML = `<div onclick="joinRoom('${activeRooms[i].roomName}')" id="room" class="">
-          <div>
-            <p>Eclipse Nub's Room</p>
+      newRoom.innerHTML = `<div
+          onclick="joinRoom('${activeRooms[i].roomName}')"
+          id="room"
+          class="transform hover:scale-95"
+        >
+          <div
+            class="flex flex-col justify-between items-center rounded text-center p-4"
+          >
+            <p class="opacity-75"><i class="bx bx-lock-alt"></i></p>
+            <p id="room-name" class="text-xl">
+              ${activeRooms[i].roomName}
+            </p>
+            <p class="opacity-75">${activeRooms[i].players.length}/2 Players</p>
           </div>
         </div>`;
-      /*newRoom.innerHTML = `<div onclick="joinRoom('${
-        activeRooms[i].roomName
-      }')">Room #${i}: ${activeRooms[i].roomName} | Players: ${
-        activeRooms[i].players.length
-      } / ${2}</div>`;*/
       __activeRooms.appendChild(newRoom);
-      __activeRooms.appendChild(document.createElement("hr"));
     }
   });
 

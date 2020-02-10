@@ -8,10 +8,8 @@ async function joinRoom(roomName) {
     return;
   }
 
-  socket.emit("join_room", {
-    roomName: fixedRoomName,
-    player: socket.id
-  });
+  if (window.location.href != `./game.html?room='${roomName}'`)
+    window.location.href = `./game.html?room='${roomName}'`;
 }
 
 async function getRoomInfo(roomName) {

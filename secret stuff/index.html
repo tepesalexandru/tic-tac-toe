@@ -1,133 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.0.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Ultimate Tic Tac Toe</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
-  <link href='https://unpkg.com/boxicons@2.0.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="./styles.css" />
-  <title>Ultimate Tic Tac Toe</title>
-</head>
+  <body>
+    <header class="flex flex-col items-center justify-center">
+      <h2 class="text-center text-color my-2 text-5xl sm:text-6xl">
+        Tic Tac Toe
+      </h2>
+    </header>
 
-<body>
-  <header class="flex flex-col items-center justify-center">
-    <h2 class="text-center text-color my-2 text-5xl sm:text-6xl">
-      Tic Tac Toe
-    </h2>
-  </header>
+    <main>
+      <!-- User Options -->
 
-  <main>
+      <div
+        id="user"
+        class="flex justify-between text-color text-xl font-semibold max-w-lg w-full px-2 my-8 mx-auto"
+      >
+        <div
+          class="flex items-center justify-between py-2 px-4 mx-2 rounded-full"
+        >
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Username"
+            class="font-semibold mx-1 w-full"
+            required
+          />
+          <button id="sendUsername">
+            <i class="bx bx-right-arrow-alt"></i>
+          </button>
+        </div>
 
-    <!-- User Options -->
+        <!-- Players Online-->
 
-    <div id="user" class="flex justify-between text-color text-xl font-semibold max-w-lg w-full px-2 my-8 mx-auto">
-      <div class="flex items-center justify-between py-2 px-4 mx-2 rounded-full">
-        <input type="text" id="userInput" placeholder="Username" class="font-semibold mx-1 w-full" required />
-        <button id="sendUsername">
-          <i class='bx bx-right-arrow-alt'></i>
-        </button>
-      </div>
-
-      <!-- Players Online-->
-
-      <div class="flex items-center justify-center mx-2 rounded-full text-center">
-        <p class="py-2 px-4">Online : <span id="playerCount">00</span></p>
-      </div>
-    </div>
-
-    <!-- Games -->
-
-    <section id="activeRooms" class="text-color font-bold grid grid-cols-2 sm:grid-cols-3 gap-5 max-w-2xl px-4 mx-auto">
-
-      <div onclick="joinRoom('${activeRooms[i].roomName}')" id="room" class="transform hover:scale-95">
-        <div class="flex flex-col justify-between items-center rounded text-center p-4">
-          <p class="opacity-75"><i class='bx bx-lock-alt'></i></p>
-          <p id="room-name" class="text-xl">Eclipse Nub's Roomm is currently full</p>
-          <p class="opacity-75">Players : 02</p>
+        <div
+          class="flex items-center justify-center mx-2 rounded-full text-center"
+        >
+          <p class="py-2 px-4">Online : <span id="playerCount">00</span></p>
         </div>
       </div>
 
+      <!-- Games -->
 
-    </section>
+      <section
+        id="activeRooms"
+        class="text-color font-bold grid grid-cols-2 sm:grid-cols-3 gap-5 max-w-2xl px-4 mx-auto"
+      >
+        <div
+          onclick="joinRoom('${activeRooms[i].roomName}')"
+          id="room"
+          class="transform hover:scale-95"
+        >
+          <div
+            class="flex flex-col justify-between items-center rounded text-center p-4"
+          >
+            <p class="opacity-75"><i class="bx bx-lock-alt"></i></p>
+            <p id="room-name" class="text-xl">
+              Eclipse Nub's Roomm is currently full
+            </p>
+            <p class="opacity-75">Players : 02</p>
+          </div>
+        </div>
+      </section>
 
-    <!-- Create Room Button -->
+      <!-- Create Room Button -->
 
-    <div id="bottom-btn" class="fixed bottom-0 flex justify-center items-end h-40 w-full">
-      <button id="createRoom" onclick="panimation()"
-        class="py-4 px-8 text-xl text-color font-bold my-4 rounded-full transform hover:scale-95">New Game</button>
-    </div>
-
-    <!-- Room Options -->
-
-    <div onclick="panimation()"" class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen bg-indigo-600"></div>
-
-    <!-- Popup -->
-
-    <div class="popup z-20  w-full max-w-md px-3">
-      <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
-
-        <button class="btn py-4 px-8 mt-4 text-xl text-color font-bold rounded-full transform hover:scale-95">
-          Local Room
-        </button>
-
-        <p class="p-color text-xl font-bold my-4 mx-auto opacity-75">OR</p>
-
-        <form class="border-2 flex flex-col p-4 w-full max-w-md rounded-lg" action="">
-
-          <label class="flex flex-col text-xs font-bold p-color mt-2" for="roomName">
-            ROOM NAME
-            <input class="text-xl font-semibold h-full border-2 rounded p-2 my-2" type="text">
-          </label>
-
-          <label class="text-xs font-bold p-color my-2" for="password">
-            PASSWORD
-            <div class="flex items-center justify-between relative my-2">
-              <div onclick="checked()" class="cursor-pointer border-2 p-2 mr-2 rounded"><i class='bx bx-check check p-color'></i></div>
-              <input class="password font-semibold text-xl p-2 border-2 rounded w-full" type="password" name="password" id="">
-            </div>
-          </label>
-
-        </form>
-        
-        <button type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
-          Create Room
+      <div
+        id="bottom-btn"
+        class="fixed bottom-0 flex justify-center items-end h-40 w-full"
+      >
+        <button
+          onclick="panimation()"
+          class="py-4 px-8 text-xl text-color font-bold my-4 rounded-full transform hover:scale-95"
+        >
+          New Game
         </button>
       </div>
 
-      <p class="mx-auto p-color opacity-50 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
-    </div>
+      <!-- Room Options -->
 
+      <div
+        onclick="panimation()"
+        class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen bg-indigo-600"
+      ></div>
 
+      <!-- Popup -->
 
-    <!-- Testing Stuff -->
-    <!-- <input type="text" placeholder="Room Name" id="roomName" />
+      <div class="popup z-20  w-full max-w-md px-3">
+        <div
+          class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg"
+        >
+          <button
+            class="btn py-4 px-8 mt-4 text-xl text-color font-bold rounded-full transform hover:scale-95"
+          >
+            Local Room
+          </button>
+
+          <p class="p-color text-xl font-bold my-4 mx-auto opacity-75">OR</p>
+
+          <form
+            class="border-2 flex flex-col p-4 w-full max-w-md rounded-lg"
+            action=""
+          >
+            <label
+              class="flex flex-col text-xs font-bold p-color mt-2"
+              for="roomName"
+            >
+              ROOM NAME
+              <input
+                class="text-xl font-semibold h-full border-2 rounded p-2 my-2"
+                type="text"
+                id="roomName"
+              />
+            </label>
+
+            <label class="text-xs font-bold p-color my-2" for="password">
+              PASSWORD
+              <div class="flex items-center justify-between relative my-2">
+                <div
+                  onclick="checked()"
+                  class="cursor-pointer border-2 p-2 mr-2 rounded"
+                >
+                  <i class="bx bx-check check p-color"></i>
+                </div>
+                <input
+                  class="password font-semibold text-xl p-2 border-2 rounded w-full"
+                  type="password"
+                  name="password"
+                  id=""
+                />
+              </div>
+            </label>
+          </form>
+
+          <button
+            id="createRoom"
+            type="submit"
+            class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95"
+          >
+            Create Room
+          </button>
+        </div>
+
+        <p
+          class="mx-auto p-color opacity-50 font-semibold text-center mt-4 pointer-events-none"
+        >
+          Tap to Cancel
+        </p>
+      </div>
+
+      <!-- Testing Stuff -->
+      <!-- <input type="text" placeholder="Room Name" id="roomName" />
     <button id="createRoomBtn">
       <p id="createRoom">Create Room</p>
     </button> -->
-  </main>
+    </main>
 
-  <script>
-    var back = document.querySelector('.roomOptions');
-    var popup = document.querySelector('.popup');
+    <script>
+      var back = document.querySelector(".roomOptions");
+      var popup = document.querySelector(".popup");
 
-    function panimation() {
-      back.classList.toggle('active');
-      popup.classList.toggle('pactive');
-    }
+      function panimation() {
+        back.classList.toggle("active");
+        popup.classList.toggle("pactive");
+      }
 
-    var check = document.querySelector('.check');
-    var password = document.querySelector('.password');
+      var check = document.querySelector(".check");
+      var password = document.querySelector(".password");
 
-    function checked() {
-      check.classList.toggle('checked');
-      password.classList.toggle('allowed');
-    }
-  </script>
+      function checked() {
+        check.classList.toggle("checked");
+        password.classList.toggle("allowed");
+      }
+    </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-  <script src="index.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="./js/helper_functions/JoinRoom.js"></script>
+    <script src="index.js"></script>
+  </body>
 </html>

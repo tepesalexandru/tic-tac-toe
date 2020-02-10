@@ -36,7 +36,8 @@ io.on("connection", socket => {
     allRooms.push({
       roomName: data.name,
       players: [],
-      symbol: "X"
+      symbol: "X",
+      full: false
     });
     console.log(`Room created! Name: ${data.name}`);
     socket.broadcast.emit("roomCreated");
@@ -52,6 +53,8 @@ io.on("connection", socket => {
     // If there are two players, start the game
     console.log(allRooms[arrayIndex].players.length);
     if (allRooms[arrayIndex].players.length === 2) {
+      allRooms[arrayIndex].full = true;
+
       //io.in(data.roomName).emit("startGame", "yes!");
       io.to(`${allRooms[arrayIndex].players[0]}`).emit("mySymbol", "X");
       io.to(`${allRooms[arrayIndex].players[1]}`).emit("mySymbol", "O");

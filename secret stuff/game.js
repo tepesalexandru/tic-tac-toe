@@ -1,7 +1,6 @@
 var socket = io.connect("http://localhost:3000");
 
-let myTurn = true,
-  symbol;
+let myTurn, symbol;
 let mySymbol;
 
 const __symbol = document.querySelector("#symbol");
@@ -23,7 +22,11 @@ __leaveBTN.addEventListener("click", () => {
 });
 
 socket.on("connect", () => {
-  joinRoom(roomNameURI);
+  //joinRoom(roomNameURI);
+  socket.emit("join_room", {
+    roomName: fixedRoomName,
+    player: socket.id
+  });
   socket.on("startGame", () => {
     __symbol.innerHTML = "X";
     myTurn = true;
