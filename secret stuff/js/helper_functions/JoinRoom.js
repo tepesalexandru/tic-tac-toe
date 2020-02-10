@@ -4,7 +4,6 @@ async function joinRoom(roomName) {
   let fixedRoomName = roomName.replace(/'/g, "");
   let activeRooms = await getRoomInfo(fixedRoomName);
   if (activeRooms.players.length >= 2) {
-    console.log("Sorry, room is full.");
     return;
   }
 

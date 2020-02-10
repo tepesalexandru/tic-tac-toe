@@ -23,7 +23,6 @@ __createBTN.addEventListener("click", async () => {
   // Send a request to join the room
   let activeRooms = await getRoomInfo(__newRoomName.value);
   if (activeRooms.players.length >= 2) {
-    console.log("Sorry, room is full.");
     return;
   }
   joinRoom(__newRoomName.value);
@@ -37,9 +36,7 @@ socket.on("playerCount", count => {
 /// Display active rooms from Socket.io
 
 socket.on("connect", () => {
-  console.log("what the fuck dude");
   socket.on("newRoom", () => {
-    console.log("yo, this is dope!");
     displayAllRooms();
   });
 });

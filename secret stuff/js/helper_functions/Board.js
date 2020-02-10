@@ -54,7 +54,6 @@ $(function() {
 
 function isGameOver() {
   var state = getBoardState();
-  console.log("Board State: ", state);
   // one of the values reruired for winner
   var matches = ["XXX", "OOO"];
 
@@ -89,7 +88,6 @@ function startGame() {
 }
 
 function resetBoard() {
-  console.log("board reset!");
   $(".cell")
     .children()
     .text("");

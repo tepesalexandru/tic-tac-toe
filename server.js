@@ -21,8 +21,6 @@ io.on("connection", socket => {
   io.sockets.emit("playerCount", allClients.length);
 
   socket.on("disconnect", () => {
-    console.log("Player disconnected!");
-
     // Remo the new connection from the array
     const i = allClients.indexOf(newUser.id);
     allClients.splice(i, 1);
@@ -40,14 +38,13 @@ io.on("connection", socket => {
       full: false,
       rematchRequests: 0
     });
-    console.log(`Room created! Name: ${data.name}`);
     io.sockets.emit("newRoom");
   });
 
   // Listening for room join requests
   socket.on("join_room", data => {
+    io.sockets.emit("newRoom");
     socket.join(data.roomName);
-    console.log(allRooms);
     let arrayIndex = allRooms.findIndex(obj => obj.roomName === data.roomName);
     allRooms[arrayIndex].players.push(data.player);
 
@@ -60,18 +57,14 @@ io.on("connection", socket => {
       io.to(`${allRooms[arrayIndex].players[0]}`).emit("mySymbol", "X");
       io.to(`${allRooms[arrayIndex].players[1]}`).emit("mySymbol", "O");
       io.sockets.in(data.roomName).emit("game.begin");
-
-      console.log("Game has started!");
     }
   });
 
   socket.on("make.move", function(data) {
-    console.log("Move made by : ", data);
     io.sockets.in(data.roomName).emit("move.made", data);
   });
 
   socket.on("leftRoom", data => {
-    console.log("Yo, somebody left!", data.room);
     let arrayIndex = allRooms.findIndex(obj => obj.roomName === data.room);
     allRooms[arrayIndex].players = allRooms[arrayIndex].players.filter(
       e => e !== data.player
