@@ -41,7 +41,7 @@ io.on("connection", socket => {
       rematchRequests: 0
     });
     console.log(`Room created! Name: ${data.name}`);
-    socket.broadcast.emit("roomCreated");
+    io.sockets.emit("newRoom");
   });
 
   // Listening for room join requests

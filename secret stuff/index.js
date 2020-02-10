@@ -36,15 +36,26 @@ socket.on("playerCount", count => {
 
 /// Display active rooms from Socket.io
 
-// When the landing page loads, also load all the rooms.
-let activeRooms;
-fetch("http://localhost:3000/rooms")
-  .then(response => response.json())
-  .then(data => {
-    activeRooms = data;
-    for (let i = 0; i < activeRooms.length; i++) {
-      const newRoom = document.createElement("div");
-      newRoom.innerHTML = `<div
+socket.on("connect", () => {
+  console.log("what the fuck dude");
+  socket.on("newRoom", () => {
+    console.log("yo, this is dope!");
+    displayAllRooms();
+  });
+});
+
+displayAllRooms();
+
+function displayAllRooms() {
+  let activeRooms;
+  __activeRooms.innerHTML = "";
+  fetch("http://localhost:3000/rooms")
+    .then(response => response.json())
+    .then(data => {
+      activeRooms = data;
+      for (let i = 0; i < activeRooms.length; i++) {
+        const newRoom = document.createElement("div");
+        newRoom.innerHTML = `<div
           onclick="joinRoom('${activeRooms[i].roomName}')"
           id="room"
           class="transform hover:scale-95"
@@ -59,9 +70,12 @@ fetch("http://localhost:3000/rooms")
             <p class="opacity-75">${activeRooms[i].players.length}/2 Players</p>
           </div>
         </div>`;
-      __activeRooms.appendChild(newRoom);
-    }
-  });
+        __activeRooms.appendChild(newRoom);
+      }
+    });
+}
+
+// When the landing page loads, also load all the rooms.
 
 async function getRoomInfo(roomName) {
   let response = await fetch("http://localhost:3000/rooms");
