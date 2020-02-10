@@ -14,7 +14,6 @@ function renderTurnMessage() {
 
 function makeMove(e) {
   e.preventDefault();
-  console.log("hellooooooooooooooo");
   // It's not your turn
   if (!myTurn) {
     return;
@@ -77,4 +76,21 @@ function isGameOver() {
     }
   }
   return false;
+}
+
+function startGame() {
+  resetBoard();
+  $("#symbol").html(mySymbol); // Show the players symbol
+  symbol = mySymbol;
+
+  // Give X the first turn
+  myTurn = mySymbol === "X";
+  renderTurnMessage();
+}
+
+function resetBoard() {
+  console.log("board reset!");
+  $(".cell")
+    .children()
+    .text("");
 }

@@ -37,7 +37,8 @@ io.on("connection", socket => {
       roomName: data.name,
       players: [],
       symbol: "X",
-      full: false
+      full: false,
+      rematchRequests: 0
     });
     console.log(`Room created! Name: ${data.name}`);
     socket.broadcast.emit("roomCreated");
@@ -76,6 +77,16 @@ io.on("connection", socket => {
       e => e !== data.player
     );
     io.to(`${data.room}`).emit("opponent.left");
+  });
+
+  socket.on("rematch_request", data => {
+    // Increment rematch requests
+    let arrayIndex = allRooms.findIndex(obj => obj.roomName === data.room);
+    allRooms[arrayIndex].rematchRequests++;
+    if (allRooms[arrayIndex].rematchRequests === 2) {
+      allRooms[arrayIndex].rematchRequests = 0;
+      io.to(`${data.room}`).emit("rematch");
+    }
   });
 });
 

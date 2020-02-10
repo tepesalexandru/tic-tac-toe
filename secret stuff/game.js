@@ -5,6 +5,7 @@ let mySymbol;
 
 const __symbol = document.querySelector("#symbol");
 const __leaveBTN = document.querySelector("#leaveBtn");
+const __rematchBTN = document.querySelector("#rematchBtn");
 
 console.log(__leaveBTN);
 
@@ -19,6 +20,13 @@ __leaveBTN.addEventListener("click", () => {
     room: fixedRoomName
   });
   window.location.href = "./index.html";
+});
+
+__rematchBTN.addEventListener("click", () => {
+  socket.emit("rematch_request", {
+    player: socket.id,
+    room: fixedRoomName
+  });
 });
 
 socket.on("connect", () => {
@@ -62,6 +70,11 @@ socket.on("connect", () => {
       $("#messages").text("Game over. You won!");
     }
     $(".cell").attr("disabled", true); //board disabled
+  });
+
+  socket.on("rematch", () => {
+    // Reset game board
+    startGame();
   });
 });
 
