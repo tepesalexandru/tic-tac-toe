@@ -77,36 +77,42 @@
 
     <!-- Room Options -->
 
-    <div class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen bg-indigo-600"></div>
+    <div onclick="panimation()"" class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen bg-indigo-600"></div>
 
-    <div class="popup flex flex-col justify-around items-center p-4 z-20 w-full max-w-md rounded-lg shadow-lg">
-      <button class="btn py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
-        Local Room
-      </button>
+    <!-- Popup -->
 
-      <p class="p-color text-xl my-4 mx-auto">OR</p>
+    <div class="popup z-20  w-full max-w-md px-3">
+      <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
 
-      <form class="border-2 flex flex-col p-4 w-full max-w-md rounded-lg" action="">
+        <button class="btn py-4 px-8 mt-4 text-xl text-color font-bold rounded-full transform hover:scale-95">
+          Local Room
+        </button>
 
-        <label class="flex flex-col text-sm p-color" for="roomName">
-          ROOM NAME
-          <input class="text-xl h-full border-2 rounded p-2 my-2" type="text">
-        </label>
+        <p class="p-color text-xl font-bold my-4 mx-auto opacity-75">OR</p>
 
-        <label class="text-sm p-color" for="password">
-          PASSWORD
-          <div class="flex items-center justify-between relative my-2">
-            <div id="check" class="border-2 p-2 mr-2 rounded"><i class='bx bx-check p-color'></i></div>
-            <input class="text-xl p-2 border-2 rounded w-full" type="password" name="" id="">
-          </div>
-        </label>
+        <form class="border-2 flex flex-col p-4 w-full max-w-md rounded-lg" action="">
 
-      </form>
-      
-      <button type="submit" class="btn mt-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
-        Create Room
-      </button>
+          <label class="flex flex-col text-xs font-bold p-color mt-2" for="roomName">
+            ROOM NAME
+            <input class="text-xl font-semibold h-full border-2 rounded p-2 my-2" type="text">
+          </label>
 
+          <label class="text-xs font-bold p-color my-2" for="password">
+            PASSWORD
+            <div class="flex items-center justify-between relative my-2">
+              <div onclick="checked()" class="cursor-pointer border-2 p-2 mr-2 rounded"><i class='bx bx-check check p-color'></i></div>
+              <input class="password font-semibold text-xl p-2 border-2 rounded w-full" type="password" name="password" id="">
+            </div>
+          </label>
+
+        </form>
+        
+        <button type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
+          Create Room
+        </button>
+      </div>
+
+      <p class="mx-auto p-color opacity-50 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
     </div>
 
 
@@ -125,6 +131,14 @@
     function panimation() {
       back.classList.toggle('active');
       popup.classList.toggle('pactive');
+    }
+
+    var check = document.querySelector('.check');
+    var password = document.querySelector('.password');
+
+    function checked() {
+      check.classList.toggle('checked');
+      password.classList.toggle('allowed');
     }
   </script>
 

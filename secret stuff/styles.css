@@ -6,7 +6,7 @@
   --p-color: #3a7cf8;
   --s-color: #4accff;
   --t-color: #FFFFFF;
-  --body-color: #FFFFFF;
+  --body-color: rgb(255, 255, 255);
 }
 
 * {
@@ -19,7 +19,7 @@
 }
 
 i {
-  font-size: 2rem !important;
+  font-size: 1.6rem !important;
 }
 
 @media screen and (max-width:640px) {
@@ -173,10 +173,14 @@ header {
   position: fixed;
   top: 50%;
   left: 50%;
-  background: var(--body-color);
+  pointer-events: none;
   transform:translate(-50%, -0%);
   opacity: 0;
   transition: all 300ms ease;
+}
+
+.popup div {
+  background: var(--body-color);
 }
 
 .active {
@@ -185,6 +189,23 @@ header {
 }
 
 .pactive {
+  pointer-events: initial;
   transform: translate(-50%, -50%);
   opacity: 100%;
+}
+
+.check {
+  opacity: 0;
+}
+
+.checked {
+  opacity: 100%;
+}
+
+.password {
+  pointer-events: none;
+}
+
+.allowed {
+  pointer-events: initial;
 }
