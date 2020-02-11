@@ -36,10 +36,10 @@ const themes = [
     b: "#ffffff"
   },
   {
-    p: "#8E0E00",
-    s: "#1F1C18",
+    p: "#00c3ff",
+    s: "#ffff1c",
     t: "#ffffff",
-    b: "#000000"
+    b: "#ffffff"
   },
   {
     p: "#00C9FF",

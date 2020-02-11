@@ -6,7 +6,7 @@
   --p-color: #00C9FF;
   --s-color: #92FE9D;
   --t-color: #ffffff;
-  --body-color: #ffffff;
+  --b-color: #ffffff;
 }
 
 * {
@@ -32,7 +32,7 @@ i {
 }
 
 body {
-  background: var(--body-color);
+  background: var(--b-color);
 }
 
 .p-color {
@@ -116,7 +116,7 @@ header {
 }
 
 #room:nth-child(even) , #board button:nth-child(even) {
-  background: var(--s-color);
+  background: var(--s-color) !important;
 }
 
 .text-color , i {
@@ -159,7 +159,7 @@ header {
 }
 
 #bottom-btn {
-  background: linear-gradient(180deg , transparent , var(--body-color));
+  background: linear-gradient(180deg , transparent , var(--b-color));
 }
 
 #bottom-btn button , .btn {
@@ -170,7 +170,7 @@ header {
 
 .roomOptions {
   opacity: 0;
-  background: var(--body-color)  !important;
+  background: var(--b-color)  !important;
   pointer-events: none;
 }
 
@@ -185,7 +185,7 @@ header {
 }
 
 .popup div , .enterRoom div{
-  background: var(--body-color);
+  background: var(--b-color);
 }
 
 .active {
