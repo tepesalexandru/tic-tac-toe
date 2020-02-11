@@ -8,11 +8,20 @@ const __userBTN = document.querySelector("#sendUsername");
 const __newRoomName = document.querySelector("#roomName");
 const __activeRooms = document.querySelector("#activeRooms");
 const __createBTN = document.querySelector("#createRoom");
+const __header = document.querySelector("#headerID");
+
+let themeIndex = 0;
+let currentTheme;
+let numberOfThemes = themes.length;
+
+const root = document.documentElement;
 
 // Update the user's handle by clicking on the button
 __userBTN.addEventListener("click", () => {
   __username.innerHTML = __userInput.value;
 });
+
+__header.addEventListener("click", () => changeTheme());
 
 __createBTN.addEventListener("click", async () => {
   // Send request to create room
@@ -123,14 +132,12 @@ async function getRoomInfo(roomName) {
 }
 /// Change Theme
 
-const THEMES = ["DEFAULT", "SOMETHING"];
-
-const root = document.documentElement;
-
-if (localStorage.getItem("MY_THEME") == null) {
-  localStorage.setItem("MY_THEME", THEMES[0]);
-}
-localStorage.setItem("MY_THEME", THEMES[1]);
-if (localStorage.getItem("MY_THEME") === THEMES[1]) {
-  //root.style.setProperty("--p-color", "#ff0000");
+function changeTheme() {
+  themeIndex++;
+  themeIndex = themeIndex % numberOfThemes;
+  console.log("changed themes!");
+  root.style.setProperty("--p-color", themes[themeIndex].p);
+  root.style.setProperty("--s-color", themes[themeIndex].s);
+  root.style.setProperty("--t-color", themes[themeIndex].t);
+  root.style.setProperty("--b-color", themes[themeIndex].b);
 }

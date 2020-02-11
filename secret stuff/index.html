@@ -14,7 +14,7 @@
   </head>
 
 <body>
-  <header class="flex flex-col items-center justify-center shadow-lg">
+  <header id="headerID" class="flex flex-col items-center justify-center shadow-lg">
     <h2 class="text-center text-color my-2 text-5xl sm:text-6xl">
       Tic Tac Toe
     </h2>
@@ -79,7 +79,7 @@
 
           <label class="flex flex-col text-xs font-bold p-color mt-2" for="roomName">
             ROOM NAME
-            <input id="roomName" class="text-xl font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="text">
+            <input  autocomplete="off" id="roomName" class="text-xl font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="text">
           </label>
 
           <label class="text-xs font-bold p-color my-2" for="password">
@@ -105,7 +105,7 @@
     <div class="enterRoom z-20 w-full max-w-md px-3">
       <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
         <label class="text-xs font-bold p-color my-2" for="enterPassword">ENTER PASSWORD</label>
-        <input id="passwordField" class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="password">
+        <input autocomplete="off" id="passwordField" class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="password">
         <button id="joinPrivateBtn" type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
           Join
         </button>
@@ -150,6 +150,7 @@
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script src="./js/helper_functions/themes.js"></script>
   <script src="./js/helper_functions/JoinRoom.js"></script>
   <script src="index.js"></script>
 </body>
