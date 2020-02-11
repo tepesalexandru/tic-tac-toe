@@ -8,7 +8,6 @@ const __userBTN = document.querySelector("#sendUsername");
 const __newRoomName = document.querySelector("#roomName");
 const __activeRooms = document.querySelector("#activeRooms");
 const __createBTN = document.querySelector("#createRoom");
-const __passwordCheck = document.querySelector(".check");
 
 // Update the user's handle by clicking on the button
 __userBTN.addEventListener("click", () => {
@@ -17,10 +16,13 @@ __userBTN.addEventListener("click", () => {
 
 __createBTN.addEventListener("click", async () => {
   // Send request to create room
+  const __passwordCheck = document.querySelector(".check");
+  const __passwordFieldC = document.querySelector("#passwordFieldC");
   let isPrivate = __passwordCheck.classList.contains("checked");
   socket.emit("roomCreated", {
     name: __newRoomName.value,
-    private: isPrivate
+    private: isPrivate,
+    password: __passwordFieldC.value
     //player: socket.id
   });
   // Send a request to join the room
@@ -57,7 +59,7 @@ function displayAllRooms() {
         const newRoom = document.createElement("div");
         if (activeRooms[i].private) {
           newRoom.innerHTML = `<div
-          onclick="enterPrivate()"
+          onclick="enterPrivate('${activeRooms[i].roomName}')"
           id="room"
           class="transform hover:scale-95"
         >
@@ -97,10 +99,17 @@ function displayAllRooms() {
 }
 
 // Private Room Request
-function enterPrivate() {
+async function enterPrivate(room) {
   eRoom();
+  const roomInfo = await getRoomInfo(room);
   const __passwordField = document.querySelector("#passwordField");
   const __joinPrivateBTN = document.querySelector("#joinPrivateBtn");
+  __joinPrivateBTN.addEventListener("click", () => {
+    console.log(__passwordField.value, roomInfo.password);
+    if (__passwordField.value === roomInfo.password) {
+      joinRoom(roomInfo.roomName);
+    }
+  });
 }
 
 // When the landing page loads, also load all the rooms.
