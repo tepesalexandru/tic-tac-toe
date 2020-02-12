@@ -7,8 +7,10 @@ async function joinRoom(roomName) {
     return;
   }
 
-  if (window.location.href != `./game.html?room='${roomName}'`)
-    window.location.href = `./game.html?room='${roomName}'`;
+  if (window.location.href != `./game.html?room='${fixedRoomName}'`) {
+    console.log(fixedRoomName);
+    window.location.href = `./game.html?room='${fixedRoomName}'`;
+  }
 }
 
 async function getRoomInfo(roomName) {

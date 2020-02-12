@@ -35,6 +35,7 @@ io.on("connection", socket => {
       roomName: data.name,
       private: data.private,
       password: data.password,
+      local: data.local,
       players: [],
       symbol: "X",
       full: false,
@@ -72,6 +73,10 @@ io.on("connection", socket => {
       e => e !== data.player
     );
     io.to(`${data.room}`).emit("opponent.left");
+  });
+
+  socket.on("leftRoom2", () => {
+    console.log("somebody refreshed!");
   });
 
   socket.on("rematch_request", data => {

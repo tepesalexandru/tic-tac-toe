@@ -1,4 +1,6 @@
-var socket = io.connect("http://localhost:3000");
+var socket = io.connect("http://localhost:3000", {
+  "sync disconnect on unload": true
+});
 
 let myTurn, symbol;
 let mySymbol;
@@ -29,8 +31,15 @@ __rematchBTN.addEventListener("click", () => {
   });
 });
 
-socket.on("connect", () => {
-  //joinRoom(roomNameURI);
+socket.on("connect", async () => {
+  console.log(await getRoomInfo(fixedRoomName));
+  const toRoom = await getRoomInfo(fixedRoomName);
+  console.log(await toRoom.players.length);
+  if ((await toRoom.players.length) === 2) {
+    window.location.href = `./index.html`;
+    return;
+  }
+  //joinRoom(fixedRoomName);
   socket.emit("join_room", {
     roomName: fixedRoomName,
     player: socket.id
@@ -46,6 +55,7 @@ socket.on("connect", () => {
 
   socket.on("game.begin", () => {
     // The server will asign X or O to the player
+    console.log("hi");
     $("#symbol").html(mySymbol); // Show the players symbol
     symbol = mySymbol;
 
@@ -75,6 +85,22 @@ socket.on("connect", () => {
   socket.on("rematch", () => {
     // Reset game board
     startGame();
+  });
+
+  window.onbeforeunload = e => {
+    socket.emit("leftRoom", {
+      player: socket.id,
+      room: fixedRoomName
+    });
+    e.returnValue = "";
+    return null;
+  };
+});
+
+socket.on("disconnect", () => {
+  socket.emit("leftRoom", {
+    player: socket.id,
+    room: fixedRoomName
   });
 });
 

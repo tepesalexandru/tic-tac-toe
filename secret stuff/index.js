@@ -9,6 +9,7 @@ const __newRoomName = document.querySelector("#roomName");
 const __activeRooms = document.querySelector("#activeRooms");
 const __createBTN = document.querySelector("#createRoom");
 const __header = document.querySelector("#headerID");
+const __createLocalBTN = document.querySelector("#createLocal");
 
 let themeIndex = 0;
 let currentTheme;
@@ -50,6 +51,15 @@ socket.on("playerCount", count => {
 /// Display active rooms from Socket.io
 
 socket.on("connect", () => {
+  __createLocalBTN.addEventListener("click", () => {
+    socket.emit("roomCreated", {
+      name: socket.id,
+      local: true
+      //player: socket.id
+    });
+    joinRoom(socket.id);
+  });
+
   socket.on("newRoom", () => {
     displayAllRooms();
   });
@@ -139,5 +149,5 @@ function changeTheme() {
   root.style.setProperty("--p-color", themes[themeIndex].p);
   root.style.setProperty("--s-color", themes[themeIndex].s);
   root.style.setProperty("--t-color", themes[themeIndex].t);
-  root.style.setProperty("--b-color", themes[themeIndex].b);
+  root.style.setProperty("--body-color", themes[themeIndex].b);
 }
