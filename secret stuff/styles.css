@@ -170,11 +170,12 @@ header {
 
 .roomOptions {
   opacity: 0;
+  filter: brightness(0.9);
   background: var(--b-color)  !important;
   pointer-events: none;
 }
 
-.popup , .enterRoom {
+.popup , .enterRoom , .error {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -184,7 +185,7 @@ header {
   transition: all 300ms ease;
 }
 
-.popup div , .enterRoom div{
+.popup div , .enterRoom div , .error div{
   background: var(--b-color);
 }
 
@@ -215,7 +216,7 @@ header {
 
 .allowed {
   pointer-events: initial;
-  opacity: 100%;
+  opacity: 100% !important;
 }
 
 .unavailable {

@@ -57,7 +57,7 @@
 
     <div id="bottom-btn" class="fixed bottom-0 flex justify-center items-end h-40 w-full">
       <button onclick="panimation()"
-        class="py-4 px-8 text-xl text-color font-bold my-4 rounded-full transform hover:scale-95">New Game</button>
+        class="py-3 px-8 text-xl text-color font-bold my-4 rounded-full transform hover:scale-95">New Game</button>
     </div>
 
     <!-- Room Options -->
@@ -66,16 +66,18 @@
 
     <!-- Popup -->
 
-    <div class="popup z-20  w-full max-w-md px-3">
+    <div class="popup z-20 w-full max-w-md px-3">
       <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
 
-        <button class="btn py-4 px-8 mt-4 text-xl text-color font-bold rounded-full transform hover:scale-95">
+        <!-- <button class="btn py-3 px-8 mt-4 text-xl text-color font-bold rounded-full transform hover:scale-95">
           Local Room
         </button>
 
-        <p class="p-color text-xl font-bold my-4 mx-auto opacity-75">OR</p>
+        <p class="p-color text-xl font-bold my-4 mx-auto opacity-75">OR</p> -->
 
-        <form class="border-2 border-gray-400 flex flex-col p-4 w-full max-w-md rounded-lg" action="">
+        <h1 class="text-center text-3xl font-bold p-color mt-4">New Room</h1>
+
+        <form class="border-2 border-gray-400 flex flex-col p-4 w-full max-w-md rounded-lg mt-4" action="">
 
           <label class="flex flex-col text-xs font-bold p-color mt-2" for="roomName">
             ROOM NAME
@@ -85,14 +87,16 @@
           <label class="text-xs font-bold p-color my-2" for="password">
             PASSWORD
             <div class="flex items-center justify-between relative my-2">
-              <div onclick="checked()" class="cursor-pointer border-2 border-gray-400 p-2 mr-2 rounded"><i class='bx bx-check check p-color'></i></div>
+              <div onclick="checked()" class="cursor-pointer border-2 border-gray-400 p-2 mr-2 rounded">
+                <i class='bx bx-check check p-color'></i>
+              </div>
               <input autocomplete="off" class="password font-semibold text-xl p-2 border-2 rounded w-full" type="password" name="password" id="passwordFieldC">
             </div>
           </label>
 
         </form>
         
-        <button  id="createRoom" type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
+        <button  id="createRoom" type="submit" class="btn my-4 py-3 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
           Create Room
         </button>
       </div>
@@ -104,18 +108,28 @@
 
     <div class="enterRoom z-20 w-full max-w-md px-3">
       <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
-        <label class="text-xs font-bold p-color my-2" for="enterPassword">ENTER PASSWORD</label>
-        <input autocomplete="off" id="passwordField" class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="password">
-        <button id="joinPrivateBtn" type="submit" class="btn my-4 py-4 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
+        <label class="text-xs font-bold p-color mt-4" for="enterPassword">ENTER PASSWORD</label>
+        <input autocomplete="off" id="passwordField" class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 mt-2" type="password">
+        <p class="wrong text-xs mt-1 mb-2 font-bold text-red-500 opacity-0">Wrong Password</p>
+        <button id="joinPrivateBtn" type="submit" class="btn mb-4 py-3 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
           Join
         </button>
       </div>
       <p class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
     </div>
 
+    <!-- Errors -->
 
-        
+    <div class="error z-20 w-full max-w-md px-3">
+      <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
+        <p id="errorMessage" class="text-2xl mt-4 p-color font-semibold text-center">
+          Please, choose a username
+        </p>
+        <button onclick="remove()" type="submit" class="btn my-4 py-3 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
+          Okay
+        </button>
       </div>
+    </div>
 
   </main>
 
@@ -125,12 +139,14 @@
     var check = document.querySelector('.check');
     var password = document.querySelector('.password');
     var enterRoom = document.querySelector('.enterRoom');
+    var error = document.querySelector('.error');
 
 
     function remove() {
       back.classList.remove('active');
       popup.classList.remove('pactive');
       enterRoom.classList.remove('pactive');
+      error.classList.remove('pactive');
     }
 
     function panimation() {
@@ -147,6 +163,12 @@
       back.classList.toggle('active');
       enterRoom.classList.toggle('pactive');
     }
+
+    function errors() {
+      back.classList.toggle('active');
+      error.classList.toggle('pactive');
+    }
+
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
