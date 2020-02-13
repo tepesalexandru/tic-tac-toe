@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
-    <link href='https://unpkg.com/boxicons@2.0.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./styles.css" />
-    <link rel="shortcut icon" href="./logo.png" type="image/x-icon">
-    <title>Ultimate Tic Tac Toe</title>
-  </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <link href='https://unpkg.com/boxicons@2.0.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="shortcut icon" href="./logo.png" type="image/x-icon">
+  <title>Ultimate Tic Tac Toe</title>
+</head>
 
 <body>
   <header id="headerID" class="flex flex-col items-center justify-center shadow-lg">
-    <h2 class="text-center text-color my-2 text-5xl sm:text-6xl">
+    <h2 class="text-center t-color my-2 text-5xl sm:text-6xl">
       Tic Tac Toe
     </h2>
   </header>
@@ -24,9 +24,10 @@
 
     <!-- User Options -->
 
-    <div id="user" class="flex justify-between text-color text-xl font-semibold max-w-lg w-full px-2 my-8 mx-auto">
+    <div id="user" class="flex justify-between t-color text-xl font-semibold max-w-lg w-full px-2 my-8 mx-auto">
       <div class="flex items-center justify-between py-2 px-4 mx-2 rounded-full">
-        <input autocomplete="off" type="text" id="userInput" placeholder="Username" class="font-semibold mx-1 w-full" required />
+        <input autocomplete="off" type="text" id="userInput" placeholder="Username" class="font-semibold mx-1 w-full"
+          maxlength="12" required />
         <button id="sendUsername">
           <i class='bx bx-right-arrow-alt'></i>
         </button>
@@ -41,13 +42,11 @@
 
     <!-- Games -->
 
-    <section id="activeRooms" class="text-color font-bold grid grid-cols-2 sm:grid-cols-3 gap-5 max-w-2xl px-4 mx-auto">
+    <section id="activeRooms" class="t-color font-bold grid grid-cols-2 sm:grid-cols-3 gap-5 max-w-2xl px-4 mx-auto">
 
-        <div
-          class="flex items-center justify-center mx-2 rounded-full text-center"
-        >
-          <p class="py-2 px-4">Online : <span id="playerCount">00</span></p>
-        </div>
+      <div class="flex items-center justify-center mx-2 rounded-full text-center">
+        <p class="py-2 px-4">Online : <span id="playerCount">00</span></p>
+      </div>
       </div>
 
 
@@ -57,7 +56,7 @@
 
     <div id="bottom-btn" class="fixed bottom-0 flex justify-center items-end h-40 w-full">
       <button onclick="panimation()"
-        class="py-3 px-8 text-xl text-color font-bold my-4 rounded-full transform hover:scale-95">New Game</button>
+        class="py-3 px-8 text-xl t-color font-bold my-4 rounded-full transform hover:scale-95">New Game</button>
     </div>
 
     <!-- Room Options -->
@@ -69,7 +68,7 @@
     <div class="popup z-20 w-full max-w-md px-3">
       <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
 
-        <!-- <button class="btn py-3 px-8 mt-4 text-xl text-color font-bold rounded-full transform hover:scale-95">
+        <!-- <button class="btn py-3 px-8 mt-4 text-xl t-color font-bold rounded-full transform hover:scale-95">
           Local Room
         </button>
 
@@ -81,7 +80,8 @@
 
           <label class="flex flex-col text-xs font-bold p-color mt-2" for="roomName">
             ROOM NAME
-            <input  autocomplete="off" id="roomName" class="text-xl font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" type="text">
+            <input autocomplete="off" id="roomName"
+              class="text-xl font-semibold h-full border-2 border-gray-400 rounded p-2 my-2" maxlength="15" type="text">
           </label>
 
           <label class="text-xs font-bold p-color my-2" for="password">
@@ -90,13 +90,15 @@
               <div onclick="checked()" class="cursor-pointer border-2 border-gray-400 p-2 mr-2 rounded">
                 <i class='bx bx-check check p-color'></i>
               </div>
-              <input autocomplete="off" class="password font-semibold text-xl p-2 border-2 rounded w-full" type="password" name="password" id="passwordFieldC">
+              <input autocomplete="off" class="password font-semibold text-xl p-2 border-2 rounded w-full"
+                type="password" name="password" maxlength="8" id="passwordFieldC" required>
             </div>
           </label>
 
         </form>
-        
-        <button  id="createRoom" type="submit" class="btn my-4 py-3 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
+
+        <button id="createRoom" type="submit"
+          class="btn my-4 py-3 px-8 text-xl t-color font-bold rounded-full transform hover:scale-95">
           Create Room
         </button>
       </div>
@@ -104,14 +106,16 @@
       <p class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
     </div>
 
-<!-- Enter Room -->
+    <!-- Enter Room -->
 
     <div class="enterRoom z-20 w-full max-w-md px-3">
       <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
         <label class="text-xs font-bold p-color mt-4" for="enterPassword">ENTER PASSWORD</label>
-        <input autocomplete="off" id="passwordField" class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 mt-2" type="password">
+        <input autocomplete="off" id="passwordField"
+          class="text-xl p-color font-semibold h-full border-2 border-gray-400 rounded p-2 mt-2" type="password">
         <p class="wrong text-xs mt-1 mb-2 font-bold text-red-500 opacity-0">Wrong Password</p>
-        <button id="joinPrivateBtn" type="submit" class="btn mb-4 py-3 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
+        <button id="joinPrivateBtn" type="submit"
+          class="btn mb-4 py-3 px-8 text-xl t-color font-bold rounded-full transform hover:scale-95">
           Join
         </button>
       </div>
@@ -125,7 +129,8 @@
         <p id="errorMessage" class="text-2xl mt-4 p-color font-semibold text-center">
           Please, choose a username
         </p>
-        <button onclick="remove()" type="submit" class="btn my-4 py-3 px-8 text-xl text-color font-bold rounded-full transform hover:scale-95">
+        <button onclick="remove()" type="submit"
+          class="btn my-4 py-3 px-8 text-xl t-color font-bold rounded-full transform hover:scale-95">
           Okay
         </button>
       </div>
