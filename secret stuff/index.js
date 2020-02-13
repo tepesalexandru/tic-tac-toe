@@ -17,6 +17,14 @@ let numberOfThemes = themes.length;
 
 const root = document.documentElement;
 
+if (localStorage.getItem("USERNAME") != null) {
+  __userInput.value = localStorage.getItem("USERNAME");
+}
+
+__userInput.addEventListener("input", () => {
+  localStorage.setItem("USERNAME", __userInput.value);
+});
+
 // Update the user's handle by clicking on the button
 __userBTN.addEventListener("click", () => {
   __username.innerHTML = __userInput.value;

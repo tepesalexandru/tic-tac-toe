@@ -8,6 +8,8 @@ let mySymbol;
 const __symbol = document.querySelector("#symbol");
 const __leaveBTN = document.querySelector("#leaveBtn");
 const __rematchBTN = document.querySelector("#rematchBtn");
+const __user1 = document.querySelector("#p1");
+const __user2 = document.querySelector("#p2");
 
 console.log(__leaveBTN);
 
@@ -32,17 +34,23 @@ __rematchBTN.addEventListener("click", () => {
 });
 
 socket.on("connect", async () => {
-  console.log(await getRoomInfo(fixedRoomName));
   const toRoom = await getRoomInfo(fixedRoomName);
-  console.log(await toRoom.players.length);
   if ((await toRoom.players.length) === 2) {
     window.location.href = `./index.html`;
     return;
   }
-  //joinRoom(fixedRoomName);
+
+  __user1.innerHTML = localStorage.getItem("USERNAME");
+  let idx = toRoom.usernames.findIndex(
+    s => s != localStorage.getItem("USERNAME")
+  );
+  __user2.innerHTML = toRoom.usernames[idx];
+  console.log(idx);
+
   socket.emit("join_room", {
     roomName: fixedRoomName,
-    player: socket.id
+    player: socket.id,
+    username: localStorage.getItem("USERNAME")
   });
   socket.on("startGame", () => {
     __symbol.innerHTML = "X";
@@ -55,12 +63,17 @@ socket.on("connect", async () => {
 
   socket.on("game.begin", () => {
     // The server will asign X or O to the player
-    console.log("hi");
     $("#symbol").html(mySymbol); // Show the players symbol
     symbol = mySymbol;
 
     // Give X the first turn
     myTurn = mySymbol === "X";
+    if (mySymbol === "X") {
+      [__user1.innerHTML, __user2.innerHTML] = [
+        __user2.innerHTML,
+        __user1.innerHTML
+      ];
+    }
     renderTurnMessage();
   });
 
@@ -90,7 +103,8 @@ socket.on("connect", async () => {
   window.onbeforeunload = e => {
     socket.emit("leftRoom", {
       player: socket.id,
-      room: fixedRoomName
+      room: fixedRoomName,
+      username: localStorage.getItem("USERNAME")
     });
     e.returnValue = "";
     return null;
@@ -100,7 +114,8 @@ socket.on("connect", async () => {
 socket.on("disconnect", () => {
   socket.emit("leftRoom", {
     player: socket.id,
-    room: fixedRoomName
+    room: fixedRoomName,
+    username: localStorage.getItem("USERNAME")
   });
 });
 

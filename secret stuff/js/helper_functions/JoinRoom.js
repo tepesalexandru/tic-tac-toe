@@ -8,7 +8,6 @@ async function joinRoom(roomName) {
   }
 
   if (window.location.href != `./game.html?room='${fixedRoomName}'`) {
-    console.log(fixedRoomName);
     window.location.href = `./game.html?room='${fixedRoomName}'`;
   }
 }
