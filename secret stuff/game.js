@@ -10,8 +10,10 @@ const __leaveBTN = document.querySelector("#leaveBtn");
 const __rematchBTN = document.querySelector("#rematchBtn");
 const __user1 = document.querySelector("#p1");
 const __user2 = document.querySelector("#p2");
-
-console.log(__leaveBTN);
+const __sendButton = document.querySelector("#send");
+const __message = document.querySelector("#message");
+const __output = document.querySelector("#output");
+const __chat = document.querySelector("#chat-window");
 
 // Extract Room Name from URI Params
 const queryString = window.location.search;
@@ -40,13 +42,6 @@ socket.on("connect", async () => {
     return;
   }
 
-  __user1.innerHTML = localStorage.getItem("USERNAME");
-  let idx = toRoom.usernames.findIndex(
-    s => s != localStorage.getItem("USERNAME")
-  );
-  __user2.innerHTML = toRoom.usernames[idx];
-  console.log(idx);
-
   socket.emit("join_room", {
     roomName: fixedRoomName,
     player: socket.id,
@@ -55,7 +50,10 @@ socket.on("connect", async () => {
   socket.on("startGame", () => {
     __symbol.innerHTML = "X";
     myTurn = true;
+    updateUsers();
   });
+
+  updateUsers();
 
   socket.on("mySymbol", s => {
     mySymbol = s;
@@ -109,6 +107,29 @@ socket.on("connect", async () => {
     e.returnValue = "";
     return null;
   };
+
+  $(__message).keyup(e => {
+    if (e.keyCode === 13) {
+      sendMessage();
+    }
+  });
+
+  __sendButton.addEventListener("click", () => {
+    sendMessage();
+  });
+  socket.on("messageOutput", data => {
+    console.log(data.message);
+    __output.innerHTML += `<p><strong>${data.player}: ${data.message}</strong></p>`;
+    __chat.scrollTop = __chat.scrollHeight;
+  });
+  function sendMessage() {
+    socket.emit("messageSent", {
+      player: localStorage.getItem("USERNAME"),
+      message: __message.value,
+      room: fixedRoomName
+    });
+    __message.value = "";
+  }
 });
 
 socket.on("disconnect", () => {
@@ -124,4 +145,18 @@ socket.on("opponent.left", function() {
   $("#messages").text("Your opponent left the game.");
   $(".cell").attr("disabled", true);
   $(".cell").text("");
+  updateUsers();
 });
+
+async function updateUsers() {
+  const toRoom = await getRoomInfo(fixedRoomName);
+  __user1.innerHTML = localStorage.getItem("USERNAME");
+  let idx = toRoom.usernames.findIndex(s => {
+    return `${s}` != `${localStorage.getItem("USERNAME")}`;
+  });
+  if (toRoom.usernames[idx] != undefined) {
+    __user2.innerHTML = toRoom.usernames[idx];
+  } else {
+    __user2.innerHTML = "Waiting...";
+  }
+}

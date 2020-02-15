@@ -29,10 +29,17 @@ __userBTN.addEventListener("click", () => {
   __username.innerHTML = __userInput.value;
 });
 
-__header.addEventListener("click", () => changeTheme());
+__header.addEventListener("click", () => {
+  changeTheme();
+  errors();
+});
 
 __createBTN.addEventListener("click", async () => {
   // Send request to create room
+  if (localStorage.getItem("USERNAME") == "") {
+    errors();
+    return;
+  }
   const __passwordCheck = document.querySelector(".check");
   const __passwordFieldC = document.querySelector("#passwordFieldC");
   let isPrivate = __passwordCheck.classList.contains("checked");

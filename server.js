@@ -93,6 +93,11 @@ io.on("connection", socket => {
       io.to(`${data.room}`).emit("rematch");
     }
   });
+
+  socket.on("messageSent", data => {
+    console.log(data.player, data.message);
+    io.to(`${data.room}`).emit("messageOutput", data);
+  });
 });
 
 module.exports = {
