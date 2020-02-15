@@ -1,176 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://unpkg.com/boxicons@2.0.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-    <link rel="shortcut icon" href="./logo.png" type="image/x-icon" />
-    <title>Ultimate Tic Tac Toe</title>
-  </head>
 
-  <body>
-    <header class="flex flex-col items-center justify-center shadow-lg">
-      <h2 class="text-center text-color my-2 text-5xl sm:text-6xl">
-        Tic Tac Toe
-      </h2>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.0.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="shortcut icon" href="./logo.png" type="image/x-icon" />
+  <title>Ultimate Tic Tac Toe</title>
+</head>
 
-    <main class="p-4 w-full">
-      <!-- Players -->
+<body>
+  <header id="headerID" class="flex flex-col items-center justify-center shadow-lg">
+    <h2 class="text-center t-color my-2 text-5xl sm:text-6xl">
+      Tic Tac Toe
+    </h2>
+  </header>
 
-      <div
-        id="players"
-        class="flex justify-between text-color text-lg font-semibold max-w-lg w-full my-4 mx-auto"
-      >
-        <div class="flex justify-between items-center py-2 px-5 rounded-full">
-          <span id="p1" class="w-5/6">Eclipse Nub</span>
-          <i class="bx bx-x"></i>
-        </div>
+  <main class="p-4 w-full">
+    <!-- Players -->
 
-        <div class="flex justify-between items-center py-2 px-5 rounded-full">
-          <span id="p2" class="w-5/6">Hritik Nub</span>
-          <i class="bx bx-radio-circle"></i>
-        </div>
-      </div>
-      <!-- Messages -->
-
-      <div
-        id="messages"
-        class="text-center text-color font-semibold max-w-lg w-full mx-auto text-xl my-4 py-3 px-5 rounded-full"
-      >
-        Waiting for opponent to join...
+    <div id="players" class="flex justify-between t-color text-lg font-semibold max-w-lg w-full my-4 mx-auto">
+      <div class="flex justify-between items-center py-2 px-5 rounded-full">
+        <span id="p1" class="w-5/6">Eclipse Nub</span>
+        <i class="bx bx-x"></i>
       </div>
 
-      <!-- Game -->
+      <div class="flex justify-between items-center py-2 px-5 rounded-full">
+        <span id="p2" class="w-5/6">Hritik Nub</span>
+        <i class="bx bx-radio-circle"></i>
+      </div>
+    </div>
+    <!-- Messages -->
 
-      <div
-        id="board"
-        class="grid grid-cols-3 gap-4 mx-2 mt-4 mb-6 max-w-lg w-full mx-auto"
-      >
-        <!--1strow-->
-        <button class="cell" id="a0"><span></span></button>
-        <button class="cell" id="a1"><span></span></button>
-        <button class="cell" id="a2"><span></span></button>
+    <div id="messages"
+      class="text-center t-color font-semibold max-w-lg w-full mx-auto text-xl my-4 py-3 px-5 rounded-full">
+      Waiting for opponent to join...
+    </div>
 
-        <!--2ndrow-->
-        <button class="cell" id="b0"><span></span></button>
-        <button class="cell" id="b1"><span></span></button>
-        <button class="cell" id="b2"><span></span></button>
+    <!-- Game -->
 
-        <!--3rdrow-->
-        <button class="cell" id="c0"><span></span></button>
-        <button class="cell" id="c1"><span></span></button>
-        <button class="cell" id="c2"><span></span></button>
+    <div id="board" class="grid grid-cols-3 gap-4 mx-2 mt-4 mb-6 max-w-lg w-full mx-auto">
+      <!--1strow-->
+      <button class="cell" id="a0"><span></span></button>
+      <button class="cell" id="a1"><span></span></button>
+      <button class="cell" id="a2"><span></span></button>
+
+      <!--2ndrow-->
+      <button class="cell" id="b0"><span></span></button>
+      <button class="cell" id="b1"><span></span></button>
+      <button class="cell" id="b2"><span></span></button>
+
+      <!--3rdrow-->
+      <button class="cell" id="c0"><span></span></button>
+      <button class="cell" id="c1"><span></span></button>
+      <button class="cell" id="c2"><span></span></button>
+    </div>
+
+    <!-- Actions -->
+
+    <div id="actions"
+      class="flex justify-between t-color text-lg sm:text-xl font-semibold max-w-lg w-full my-4 mx-auto">
+      <div onclick="panimation()" class="flex justify-between items-center py-2 px-4 rounded-full">
+        <span>Chat</span>
+        <i class="bx bx-message-square-dots"></i>
       </div>
 
-      <!-- Actions -->
+      <div class="flex justify-between items-center py-2 px-4 rounded-full">
+        <span>Invite</span>
+        <i class="bx bx-user-plus"></i>
+      </div>
+    </div>
 
-      <div
-        id="actions"
-        class="flex justify-between text-color text-lg sm:text-xl font-semibold max-w-lg w-full my-2 sm:my-6 mx-auto"
-      >
-        <div
-          onclick="panimation()"
-          class="flex justify-between items-center py-2 px-4 rounded-full"
-        >
-          <span>Chat</span>
-          <i class="bx bx-message-square-dots"></i>
-        </div>
-
-        <div class="flex justify-between items-center py-2 px-4 rounded-full">
-          <span>Invite</span>
-          <i class="bx bx-user-plus"></i>
-        </div>
+    <div id="actions"
+      class="flex justify-between t-color text-lg sm:text-xl font-semibold max-w-lg w-full my-4 mx-auto">
+      <div id="rematchBtn" class="flex justify-between items-center py-2 px-4 rounded-full">
+        <span>Rematch</span>
+        <i class="bx bx-reset"></i>
       </div>
 
-      <div
-        id="actions"
-        class="flex justify-between text-color text-lg sm:text-xl font-semibold max-w-lg w-full my-2 sm:my-6 mx-auto"
-      >
-        <div
-          id="rematchBtn"
-          class="flex justify-between items-center py-2 px-4 rounded-full"
-        >
-          <span>Rematch</span>
-          <i class="bx bx-reset"></i>
+      <div id="leaveBtn" class="flex justify-between items-center py-2 px-4 rounded-full">
+        <span>Exit</span>
+        <i class="bx bx-exit"></i>
+      </div>
+    </div>
+
+    <!-- Chat -->
+
+    <div onclick="remove()" class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen">
+    </div>
+    <div class="popup z-20 w-full max-w-lg p-4">
+      <div id="chat" class="flex flex-col justify-center items-around text-center p-4 shadow-lg rounded-lg">
+        <h1 class="text-4xl font-semibold p-color mb-4">Chat Room</h1>
+
+        <div id="chat-window" class="mb-4 rounded-lg">
+          <div id="output"></div>
+          <div id="feedback"></div>
         </div>
 
-        <div
-          id="leaveBtn"
-          class="flex justify-between items-center py-2 px-4 rounded-full"
-        >
-          <span>Exit</span>
-          <i class="bx bx-exit"></i>
+        <div id="message-box" class="flex justify-between w-full rounded-full px-2">
+          <input autocomplete="off" id="message" type="text" placeholder="Message"
+            class="text-xl p-color font-semibold p-2" />
+          <button id="send"><i class="bx bx-send p-color ml-2"></i></button>
         </div>
       </div>
+      <p class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none">
+        Tap to Cancel
+      </p>
+    </div>
 
-      <!-- Chat -->
+    <!-- Score Card -->
 
-      <div
-        onclick="panimation()"
-        class="roomOptions z-10 fixed top-0 bottom-0 left-0 right-0 w-full h-screen bg-indigo-600"
-      ></div>
-      <div class="popup z-20 w-full max-w-lg p-4">
-        <div
-          id="chat"
-          class="flex flex-col justify-center items-around text-center p-4 shadow-lg rounded-lg"
-        >
-          <h1 class="text-4xl font-semibold p-color mb-4">Chat Room</h1>
+    <div class="scoreCard z-20 w-full max-w-md px-3">
+      <div class=" flex flex-col justify-around items-center p-4 z-20 w-full rounded-lg shadow-lg">
 
-          <div id="chat-window" class="mb-4 rounded-lg">
-            <div id="output"></div>
-            <div id="feedback"></div>
-          </div>
+        <h1 class="text-center text-3xl font-black p-color mt-4">You WON!</h1>
 
-          <div
-            id="message-box"
-            class="flex justify-between w-full rounded-full px-2"
-          >
-            <input
-              autocomplete="off"
-              id="message"
-              type="text"
-              placeholder="Message"
-              class="text-xl font-semibold p-2"
-            />
-            <button id="send"><i class="bx bx-send p-color ml-2"></i></button>
-          </div>
+        <div id="playerNames"
+          class="flex justify-between max-w-sm w-full mx-auto t-color text-center text-lg sm:text-xl t-color font-semibold my-4">
+          <p class="rounded-full py-2 px-4">Player 01</p>
+          <p class="rounded-full py-2 px-4">Player 02</p>
         </div>
-        <p
-          class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none"
-        >
-          Tap to Cancel
-        </p>
+        <div class="w-full flex justify-around p-color text-6xl font-black">
+          <span>00</span>
+          <span>00</span>
+        </div>
+
+        <button onclick="remove()" type="submit"
+          class="btn my-4 py-3 px-8 text-xl t-color font-bold rounded-full transform hover:scale-95">
+          COOL!
+        </button>
       </div>
-    </main>
+      <p class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none">Tap to Cancel</p>
+    </div>
 
-    <script>
-      var back = document.querySelector(".roomOptions");
-      var popup = document.querySelector(".popup");
-      var scoreCard = document.querySelector(".scoreCard");
+  </main>
 
-      function panimation() {
-        back.classList.toggle("active");
-        popup.classList.toggle("pactive");
-      }
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
-    <script src="./js/helper_functions/JoinRoom.js"></script>
-    <script src="game.js"></script>
-    <script src="./js/helper_functions/Board.js"></script>
-  </body>
+  <script>
+    var back = document.querySelector(".roomOptions");
+    var popup = document.querySelector(".popup");
+    var scoreCard = document.querySelector(".scoreCard");
+
+    function remove() {
+      back.classList.remove('active');
+      popup.classList.remove('pactive');
+      scoreCard.classList.remove('pactive');
+    }
+
+    function panimation() {
+      back.classList.toggle('active');
+      popup.classList.toggle('pactive');
+    }
+
+    function score() {
+      back.classList.toggle('active');
+      scoreCard.classList.toggle('pactive');
+
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="./js/helper_functions/JoinRoom.js"></script>
+  <script src="game.js"></script>
+  <script src="./js/helper_functions/Board.js"></script>
+</body>
+
 </html>

@@ -6,7 +6,7 @@
   --p-color: #00C9FF;
   --s-color: #92FE9D;
   --t-color: #ffffff;
-  --body-color: #ffffff;
+  --b-color: #ffffff;
 }
 
 * {
@@ -32,7 +32,7 @@ i {
 }
 
 body {
-  background: var(--body-color);
+  background: var(--b-color);
 }
 
 .p-color {
@@ -116,10 +116,10 @@ header {
 }
 
 #room:nth-child(even) , #board button:nth-child(even) {
-  background: var(--s-color);
+  background: var(--s-color) !important;
 }
 
-.text-color , i {
+.t-color , i {
   color: var(--t-color);
 }
 
@@ -130,7 +130,7 @@ header {
   text-overflow: ellipsis;
 }
 
-#players div , #actions div , #user div {
+#players div , #actions div , #user div , #playerNames p {
   width: 48%;
   background: var(--p-color);
   opacity: 80%;
@@ -159,7 +159,7 @@ header {
 }
 
 #bottom-btn {
-  background: linear-gradient(180deg , transparent , var(--body-color));
+  background: linear-gradient(180deg , transparent , var(--b-color));
 }
 
 #bottom-btn button , .btn {
@@ -170,27 +170,28 @@ header {
 
 .roomOptions {
   opacity: 0;
-  background: var(--body-color)  !important;
+  filter: brightness(0.9);
+  background: var(--b-color)  !important;
   pointer-events: none;
 }
 
-.popup , .enterRoom {
+.popup , .enterRoom , .error , .scoreCard {
   position: fixed;
   top: 50%;
   left: 50%;
   pointer-events: none;
-  transform:translate(-50%, -0%);
+  transform: translate(-50%, -0%);
   opacity: 0;
   transition: all 300ms ease;
 }
 
-.popup div , .enterRoom div{
-  background: var(--body-color);
+.popup div , .enterRoom div , .error div , .scoreCard div{
+  background: var(--b-color);
 }
 
 .active {
   pointer-events: initial;
-  opacity: 75%;
+  opacity: 85%;
 }
 
 .pactive {
@@ -215,7 +216,7 @@ header {
 
 .allowed {
   pointer-events: initial;
-  opacity: 100%;
+  opacity: 100% !important;
 }
 
 .unavailable {
@@ -251,4 +252,36 @@ header {
 
 #message-box input::-webkit-input-placeholder {
   color: var(--p-color) !important;
+}
+
+#playerNames p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blink {
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 100%;
+  }
+
+  25% {
+    opacity: 10%;
+  }
+
+  50% {
+    opacity: 100%;
+  }
+
+  75% {
+    opacity: 10%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
 }

@@ -9,7 +9,6 @@ const __newRoomName = document.querySelector("#roomName");
 const __activeRooms = document.querySelector("#activeRooms");
 const __createBTN = document.querySelector("#createRoom");
 const __header = document.querySelector("#headerID");
-const __createLocalBTN = document.querySelector("#createLocal");
 
 let themeIndex = 0;
 let currentTheme;
@@ -59,15 +58,6 @@ socket.on("playerCount", count => {
 /// Display active rooms from Socket.io
 
 socket.on("connect", () => {
-  __createLocalBTN.addEventListener("click", () => {
-    socket.emit("roomCreated", {
-      name: socket.id,
-      local: true
-      //player: socket.id
-    });
-    joinRoom(socket.id);
-  });
-
   socket.on("newRoom", () => {
     displayAllRooms();
   });
