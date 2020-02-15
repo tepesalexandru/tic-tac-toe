@@ -75,7 +75,7 @@ displayAllRooms();
 function displayAllRooms() {
   let activeRooms;
   __activeRooms.innerHTML = "";
-  fetch("http://localhost:3000/rooms")
+  fetch("https://ultimatexoxo.herokuapp.com/rooms")
     .then(response => response.json())
     .then(data => {
       activeRooms = data;
