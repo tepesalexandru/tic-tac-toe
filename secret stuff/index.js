@@ -1,4 +1,4 @@
-const socket = io.connect("http://localhost:3000");
+const socket = io.connect("https://ultimatexoxo.herokuapp.com");
 
 // DOM Elements, they start with '__' for convention
 const __playerCount = document.querySelector("#playerCount");
@@ -129,7 +129,6 @@ async function enterPrivate(room) {
   const __passwordField = document.querySelector("#passwordField");
   const __joinPrivateBTN = document.querySelector("#joinPrivateBtn");
   __joinPrivateBTN.addEventListener("click", () => {
-    console.log(__passwordField.value, roomInfo.password);
     if (__passwordField.value === roomInfo.password) {
       joinRoom(roomInfo.roomName);
     }
@@ -139,7 +138,7 @@ async function enterPrivate(room) {
 // When the landing page loads, also load all the rooms.
 
 async function getRoomInfo(roomName) {
-  let response = await fetch("http://localhost:3000/rooms");
+  let response = await fetch("https://ultimatexoxo.herokuapp.com/rooms");
   let rooms = await response.json();
   let arrayIndex = await rooms.findIndex(obj => obj.roomName === roomName);
   //console.log(await rooms[arrayIndex]);
@@ -150,7 +149,6 @@ async function getRoomInfo(roomName) {
 function changeTheme() {
   themeIndex++;
   themeIndex = themeIndex % numberOfThemes;
-  console.log("changed themes!");
   root.style.setProperty("--p-color", themes[themeIndex].p);
   root.style.setProperty("--s-color", themes[themeIndex].s);
   root.style.setProperty("--t-color", themes[themeIndex].t);

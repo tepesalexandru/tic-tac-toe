@@ -80,10 +80,6 @@ io.on("connection", socket => {
     io.to(`${data.room}`).emit("opponent.left");
   });
 
-  socket.on("leftRoom2", () => {
-    console.log("somebody refreshed!");
-  });
-
   socket.on("rematch_request", data => {
     // Increment rematch requests
     let arrayIndex = allRooms.findIndex(obj => obj.roomName === data.room);
@@ -95,7 +91,6 @@ io.on("connection", socket => {
   });
 
   socket.on("messageSent", data => {
-    console.log(data.player, data.message);
     io.to(`${data.room}`).emit("messageOutput", data);
   });
 });

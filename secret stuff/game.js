@@ -1,4 +1,4 @@
-var socket = io.connect("http://localhost:3000", {
+var socket = io.connect("https://ultimatexoxo.herokuapp.com", {
   "sync disconnect on unload": true
 });
 
@@ -118,7 +118,6 @@ socket.on("connect", async () => {
     sendMessage();
   });
   socket.on("messageOutput", data => {
-    console.log(data.message);
     __output.innerHTML += `<p><strong>${data.player}: ${data.message}</strong></p>`;
     __chat.scrollTop = __chat.scrollHeight;
   });
