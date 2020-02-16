@@ -72,6 +72,7 @@ socket.on("connect", async () => {
         __user1.innerHTML
       ];
     }
+    updateUsers();
     renderTurnMessage();
   });
 
