@@ -82,16 +82,20 @@ socket.on("connect", async () => {
       .text(data.symbol);
     myTurn = data.symbol !== symbol; // If the symbol of the last move was the same as the current player means that now is opponent's turn
 
-    if (!isGameOver()) {
+    let endNumber = isGameOver;
+    if (endNumber == 0) {
       // If game isn't over show who's turn is this
       return renderTurnMessage();
-    }
-    if (myTurn) {
-      $("#messages").text("Game over. You lost.");
+    } else if (endNumber == 2) {
+      $("#messages").text("Game over. It's a tie.");
     } else {
-      $("#messages").text("Game over. You won!");
+      if (myTurn) {
+        $("#messages").text("Game over. You lost.");
+      } else {
+        $("#messages").text("Game over. You won!");
+      }
+      $(".cell").attr("disabled", true); //board disabled
     }
-    $(".cell").attr("disabled", true); //board disabled
   });
 
   socket.on("rematch", () => {

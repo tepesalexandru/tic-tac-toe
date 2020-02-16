@@ -74,6 +74,13 @@ function isGameOver() {
       return true;
     }
   }
+  let count = 0;
+  state.forEach(element => {
+    if (element != "") {
+      count++;
+    }
+  });
+  if (count == 9) return 2;
   return false;
 }
 
