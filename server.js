@@ -35,7 +35,9 @@ io.on("connection", socket => {
       roomName: data.name,
       private: data.private,
       password: data.password,
+      local: data.local,
       players: [],
+      usernames: [],
       symbol: "X",
       full: false,
       rematchRequests: 0
@@ -49,6 +51,7 @@ io.on("connection", socket => {
     socket.join(data.roomName);
     let arrayIndex = allRooms.findIndex(obj => obj.roomName === data.roomName);
     allRooms[arrayIndex].players.push(data.player);
+    allRooms[arrayIndex].usernames.push(data.username);
 
     // If there are two players, start the game
     console.log(allRooms[arrayIndex].players.length);
@@ -71,6 +74,9 @@ io.on("connection", socket => {
     allRooms[arrayIndex].players = allRooms[arrayIndex].players.filter(
       e => e !== data.player
     );
+    allRooms[arrayIndex].usernames = allRooms[arrayIndex].usernames.filter(
+      e => e !== data.username
+    );
     io.to(`${data.room}`).emit("opponent.left");
   });
 
@@ -82,6 +88,10 @@ io.on("connection", socket => {
       allRooms[arrayIndex].rematchRequests = 0;
       io.to(`${data.room}`).emit("rematch");
     }
+  });
+
+  socket.on("messageSent", data => {
+    io.to(`${data.room}`).emit("messageOutput", data);
   });
 });
 

@@ -1,4 +1,6 @@
-var socket = io.connect("http://localhost:3000");
+var socket = io.connect("https://ultimatexoxo.herokuapp.com", {
+  "sync disconnect on unload": true
+});
 
 let myTurn, symbol;
 let mySymbol;
@@ -6,8 +8,12 @@ let mySymbol;
 const __symbol = document.querySelector("#symbol");
 const __leaveBTN = document.querySelector("#leaveBtn");
 const __rematchBTN = document.querySelector("#rematchBtn");
-
-console.log(__leaveBTN);
+const __user1 = document.querySelector("#p1");
+const __user2 = document.querySelector("#p2");
+const __sendButton = document.querySelector("#send");
+const __message = document.querySelector("#message");
+const __output = document.querySelector("#output");
+const __chat = document.querySelector("#chat-window");
 
 // Extract Room Name from URI Params
 const queryString = window.location.search;
@@ -29,16 +35,25 @@ __rematchBTN.addEventListener("click", () => {
   });
 });
 
-socket.on("connect", () => {
-  //joinRoom(roomNameURI);
+socket.on("connect", async () => {
+  const toRoom = await getRoomInfo(fixedRoomName);
+  if ((await toRoom.players.length) === 2) {
+    window.location.href = `./index.html`;
+    return;
+  }
+
   socket.emit("join_room", {
     roomName: fixedRoomName,
-    player: socket.id
+    player: socket.id,
+    username: localStorage.getItem("USERNAME")
   });
   socket.on("startGame", () => {
     __symbol.innerHTML = "X";
     myTurn = true;
+    updateUsers();
   });
+
+  updateUsers();
 
   socket.on("mySymbol", s => {
     mySymbol = s;
@@ -51,6 +66,13 @@ socket.on("connect", () => {
 
     // Give X the first turn
     myTurn = mySymbol === "X";
+    if (mySymbol === "X") {
+      [__user1.innerHTML, __user2.innerHTML] = [
+        __user2.innerHTML,
+        __user1.innerHTML
+      ];
+    }
+    updateUsers();
     renderTurnMessage();
   });
 
@@ -76,6 +98,46 @@ socket.on("connect", () => {
     // Reset game board
     startGame();
   });
+
+  window.onbeforeunload = e => {
+    socket.emit("leftRoom", {
+      player: socket.id,
+      room: fixedRoomName,
+      username: localStorage.getItem("USERNAME")
+    });
+    e.returnValue = "";
+    return null;
+  };
+
+  $(__message).keyup(e => {
+    if (e.keyCode === 13) {
+      sendMessage();
+    }
+  });
+
+  __sendButton.addEventListener("click", () => {
+    sendMessage();
+  });
+  socket.on("messageOutput", data => {
+    __output.innerHTML += `<p><strong>${data.player}: ${data.message}</strong></p>`;
+    __chat.scrollTop = __chat.scrollHeight;
+  });
+  function sendMessage() {
+    socket.emit("messageSent", {
+      player: localStorage.getItem("USERNAME"),
+      message: __message.value,
+      room: fixedRoomName
+    });
+    __message.value = "";
+  }
+});
+
+socket.on("disconnect", () => {
+  socket.emit("leftRoom", {
+    player: socket.id,
+    room: fixedRoomName,
+    username: localStorage.getItem("USERNAME")
+  });
 });
 
 // Disable the board if the opponent leaves
@@ -83,4 +145,18 @@ socket.on("opponent.left", function() {
   $("#messages").text("Your opponent left the game.");
   $(".cell").attr("disabled", true);
   $(".cell").text("");
+  updateUsers();
 });
+
+async function updateUsers() {
+  const toRoom = await getRoomInfo(fixedRoomName);
+  __user1.innerHTML = localStorage.getItem("USERNAME");
+  let idx = toRoom.usernames.findIndex(s => {
+    return `${s}` != `${localStorage.getItem("USERNAME")}`;
+  });
+  if (toRoom.usernames[idx] != undefined) {
+    __user2.innerHTML = toRoom.usernames[idx];
+  } else {
+    __user2.innerHTML = "Waiting...";
+  }
+}

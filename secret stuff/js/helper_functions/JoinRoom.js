@@ -7,12 +7,13 @@ async function joinRoom(roomName) {
     return;
   }
 
-  if (window.location.href != `./game.html?room='${roomName}'`)
-    window.location.href = `./game.html?room='${roomName}'`;
+  if (window.location.href != `./game.html?room='${fixedRoomName}'`) {
+    window.location.href = `./game.html?room='${fixedRoomName}'`;
+  }
 }
 
 async function getRoomInfo(roomName) {
-  let response = await fetch("http://localhost:3000/rooms");
+  let response = await fetch("https://ultimatexoxo.herokuapp.com/rooms");
   let rooms = await response.json();
   let arrayIndex = await rooms.findIndex(obj => obj.roomName === roomName);
   //console.log(await rooms[arrayIndex]);
