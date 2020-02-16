@@ -1,6 +1,6 @@
 /// Core file for Web Sockets (Socket.io)
 
-const { server, allClients, allRooms } = require("./index.js");
+let { server, allClients, allRooms } = require("./index.js");
 
 const socket = require("socket.io");
 const io = socket(server);
@@ -71,6 +71,11 @@ io.on("connection", socket => {
 
   socket.on("leftRoom", data => {
     let arrayIndex = allRooms.findIndex(obj => obj.roomName === data.room);
+    if (allRooms[arrayIndex].players.length == 0) {
+      allRooms.splice(arrayIndex, 1);
+      io.sockets.emit("newRoom");
+      return;
+    }
     allRooms[arrayIndex].players = allRooms[arrayIndex].players.filter(
       e => e !== data.player
     );

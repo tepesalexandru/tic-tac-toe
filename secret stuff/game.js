@@ -36,13 +36,6 @@ __leaveBTN.addEventListener("click", () => {
   window.location.href = "./index.html";
 });
 
-__rematchBTN.addEventListener("click", () => {
-  socket.emit("rematch_request", {
-    player: socket.id,
-    room: fixedRoomName
-  });
-});
-
 socket.on("connect", async () => {
   const toRoom = await getRoomInfo(fixedRoomName);
   if ((await toRoom.players.length) === 2) {
