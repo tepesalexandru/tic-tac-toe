@@ -16,14 +16,19 @@ app.get("/game", function(req, res) {
 let allClients = [];
 // This array contains every room
 let allRooms = [];
+let roomsCreated = 0;
 
 // This is from where the allRooms variable can be accessed with a fetch request from the client side
 app.get("/rooms", (req, res) => {
   res.send(allRooms);
 });
 
+app.get("/created", (req, res) => {
+  res.send(roomsCreated);
+});
+
 // Export things that need to be used by other scripts
-module.exports = { server, allClients, allRooms };
+module.exports = { server, allClients, allRooms, roomsCreated };
 
 // Run the following scripts
 require("./server");

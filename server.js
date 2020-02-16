@@ -1,6 +1,6 @@
 /// Core file for Web Sockets (Socket.io)
 
-let { server, allClients, allRooms } = require("./index.js");
+let { server, allClients, allRooms, roomsCreated } = require("./index.js");
 
 const socket = require("socket.io");
 const io = socket(server);
@@ -42,6 +42,7 @@ io.on("connection", socket => {
       full: false,
       rematchRequests: 0
     });
+    roomsCreated++;
     io.sockets.emit("newRoom");
   });
 
