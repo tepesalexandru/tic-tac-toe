@@ -170,7 +170,7 @@ header {
 
 .roomOptions {
   opacity: 0;
-  filter: brightness(0.9);
+  filter: brightness(0.3);
   background: var(--b-color)  !important;
   pointer-events: none;
 }

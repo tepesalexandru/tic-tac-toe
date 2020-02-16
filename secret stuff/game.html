@@ -68,20 +68,7 @@
         <i class="bx bx-message-square-dots"></i>
       </div>
 
-      <div class="flex justify-between items-center py-2 px-4 rounded-full">
-        <span>Invite</span>
-        <i class="bx bx-user-plus"></i>
-      </div>
-    </div>
-
-    <div id="actions"
-      class="flex justify-between t-color text-lg sm:text-xl font-semibold max-w-lg w-full my-4 mx-auto">
-      <div id="rematchBtn" class="flex justify-between items-center py-2 px-4 rounded-full">
-        <span>Rematch</span>
-        <i class="bx bx-reset"></i>
-      </div>
-
-      <div id="leaveBtn" class="flex justify-between items-center py-2 px-4 rounded-full">
+      <div onclick="score()"id="leaveBtn" class="flex justify-between items-center py-2 px-4 rounded-full">
         <span>Exit</span>
         <i class="bx bx-exit"></i>
       </div>
@@ -95,7 +82,7 @@
       <div id="chat" class="flex flex-col justify-center items-around text-center p-4 shadow-lg rounded-lg">
         <h1 class="text-4xl font-semibold p-color mb-4">Chat Room</h1>
 
-        <div id="chat-window" class="mb-4 rounded-lg">
+        <div id="chat-window" class="mb-4 rounded-lg pointer-events-none">
           <div id="output"></div>
           <div id="feedback"></div>
         </div>
@@ -129,7 +116,7 @@
         </div>
 
         <button onclick="remove()" type="submit"
-          class="btn my-4 py-3 px-8 text-xl t-color font-bold rounded-full transform hover:scale-95">
+          class="btn mt-6 mb-4 py-3 px-8 text-xl t-color font-bold rounded-full transform hover:scale-95">
           COOL!
         </button>
       </div>
