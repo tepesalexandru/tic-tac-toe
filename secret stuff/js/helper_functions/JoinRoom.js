@@ -13,7 +13,7 @@ async function joinRoom(roomName) {
 }
 
 async function getRoomInfo(roomName) {
-  let response = await fetch("https://ultimatexoxo.herokuapp.com/rooms");
+  let response = await fetch(`${link}/rooms`);
   let rooms = await response.json();
   let arrayIndex = await rooms.findIndex(obj => obj.roomName === roomName);
   //console.log(await rooms[arrayIndex]);

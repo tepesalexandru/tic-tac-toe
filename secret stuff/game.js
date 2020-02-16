@@ -1,4 +1,12 @@
-var socket = io.connect("https://ultimatexoxo.herokuapp.com", {
+var env = 1;
+let link;
+if (env == 1) {
+  link = "http://localhost:3000";
+} else {
+  link = "https://ultimatexoxo.herokuapp.com";
+}
+
+var socket = io.connect(link, {
   "sync disconnect on unload": true
 });
 
@@ -60,20 +68,7 @@ socket.on("connect", async () => {
   });
 
   socket.on("game.begin", () => {
-    // The server will asign X or O to the player
-    $("#symbol").html(mySymbol); // Show the players symbol
-    symbol = mySymbol;
-
-    // Give X the first turn
-    myTurn = mySymbol === "X";
-    if (mySymbol === "X") {
-      [__user1.innerHTML, __user2.innerHTML] = [
-        __user2.innerHTML,
-        __user1.innerHTML
-      ];
-    }
-    updateUsers();
-    renderTurnMessage();
+    getStarted();
   });
 
   socket.on("move.made", function(data) {
@@ -84,13 +79,15 @@ socket.on("connect", async () => {
 
     let endNumber = isGameOver();
     if (endNumber) {
-      setTimeout(resetBoard, 1000);
+      setTimeout(startGame, 1000);
     }
     if (endNumber == 0) {
       // If game isn't over show who's turn is this
       return renderTurnMessage();
     } else if (endNumber == 2) {
       $("#messages").text("Game over. It's a tie.");
+      $(".cell").attr("disabled", true); //board disabled
+      getStarted();
     } else {
       if (myTurn) {
         $("#messages").text("Game over. You lost.");
@@ -98,12 +95,15 @@ socket.on("connect", async () => {
         $("#messages").text("Game over. You won!");
       }
       $(".cell").attr("disabled", true); //board disabled
+      getStarted();
     }
   });
 
   socket.on("rematch", () => {
     // Reset game board
-    startGame();
+    //
+    //startGame();
+    getStarted();
   });
 
   window.onbeforeunload = e => {
@@ -166,4 +166,22 @@ async function updateUsers() {
   } else {
     __user2.innerHTML = "Waiting...";
   }
+}
+
+function getStarted() {
+  // The server will asign X or O to the player
+  $(".cell").attr("disabled", false); //board disabled
+  $("#symbol").html(mySymbol); // Show the players symbol
+  symbol = mySymbol;
+
+  // Give X the first turn
+  myTurn = mySymbol === "X";
+  if (mySymbol === "X") {
+    [__user1.innerHTML, __user2.innerHTML] = [
+      __user2.innerHTML,
+      __user1.innerHTML
+    ];
+  }
+  updateUsers();
+  renderTurnMessage();
 }

@@ -1,4 +1,12 @@
-const socket = io.connect("https://ultimatexoxo.herokuapp.com");
+var env = 1;
+let link;
+if (env == 1) {
+  link = "http://localhost:3000";
+} else {
+  link = "https://ultimatexoxo.herokuapp.com";
+}
+
+const socket = io.connect(link);
 
 // DOM Elements, they start with '__' for convention
 const __playerCount = document.querySelector("#playerCount");
@@ -75,7 +83,7 @@ displayAllRooms();
 function displayAllRooms() {
   let activeRooms;
   __activeRooms.innerHTML = "";
-  fetch("https://ultimatexoxo.herokuapp.com/rooms")
+  fetch(`${link}/rooms`)
     .then(response => response.json())
     .then(data => {
       activeRooms = data;
@@ -138,7 +146,7 @@ async function enterPrivate(room) {
 // When the landing page loads, also load all the rooms.
 
 async function getRoomInfo(roomName) {
-  let response = await fetch("https://ultimatexoxo.herokuapp.com/rooms");
+  let response = await fetch(`${link}/rooms`);
   let rooms = await response.json();
   let arrayIndex = await rooms.findIndex(obj => obj.roomName === roomName);
   //console.log(await rooms[arrayIndex]);

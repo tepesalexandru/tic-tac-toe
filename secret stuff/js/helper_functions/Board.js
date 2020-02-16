@@ -75,10 +75,13 @@ function isGameOver() {
     }
   }
   let count = 0;
-  state.forEach(element => {
-    if (`${element}` != "") {
+  $(".cell").each(function() {
+    if (
+      $(this)
+        .children()
+        .text() != ""
+    )
       count++;
-    }
   });
   if (count == 9) return 2;
   return false;
