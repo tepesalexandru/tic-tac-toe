@@ -76,7 +76,7 @@ function isGameOver() {
   }
   let count = 0;
   state.forEach(element => {
-    if (element != "") {
+    if (`${element}` != "") {
       count++;
     }
   });
