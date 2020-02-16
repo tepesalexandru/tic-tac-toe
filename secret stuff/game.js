@@ -83,6 +83,9 @@ socket.on("connect", async () => {
     myTurn = data.symbol !== symbol; // If the symbol of the last move was the same as the current player means that now is opponent's turn
 
     let endNumber = isGameOver;
+    if (endNumber) {
+      setTimeout(resetBoard, 1000);
+    }
     if (endNumber == 0) {
       // If game isn't over show who's turn is this
       return renderTurnMessage();
