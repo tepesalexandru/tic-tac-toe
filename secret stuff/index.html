@@ -175,7 +175,15 @@
     }
 
   </script>
-
+  <script>
+    var env = 2;
+    let link;
+    if (env == 1) {
+      link = "http://localhost:3000";
+    } else {
+      link = "https://ultimatexoxo.herokuapp.com";
+    }
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
   <script src="./js/helper_functions/themes.js"></script>
   <script src="./js/helper_functions/JoinRoom.js"></script>

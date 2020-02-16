@@ -1,11 +1,3 @@
-var env = 1;
-let link;
-if (env == 1) {
-  link = "http://localhost:3000";
-} else {
-  link = "https://ultimatexoxo.herokuapp.com";
-}
-
 const socket = io.connect(link);
 
 // DOM Elements, they start with '__' for convention

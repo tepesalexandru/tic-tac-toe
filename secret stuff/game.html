@@ -202,6 +202,15 @@
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"
     ></script>
+    <script>
+      var env = 2;
+      let link;
+      if (env == 1) {
+        link = "http://localhost:3000";
+      } else {
+        link = "https://ultimatexoxo.herokuapp.com";
+      }
+    </script>
     <script src="./js/helper_functions/JoinRoom.js"></script>
     <script src="./js/helper_functions/themes.js"></script>
     <script src="game.js"></script>

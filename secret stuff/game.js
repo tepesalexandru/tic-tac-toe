@@ -1,11 +1,3 @@
-var env = 1;
-let link;
-if (env == 1) {
-  link = "http://localhost:3000";
-} else {
-  link = "https://ultimatexoxo.herokuapp.com";
-}
-
 var socket = io.connect(link, {
   "sync disconnect on unload": true
 });
