@@ -5,7 +5,7 @@ let { server, allClients, allRooms, roomsCreated } = require("./index.js");
 const socket = require("socket.io");
 const io = socket(server);
 
-/// Handle new player connections / disconnections
+// Handle new player connections / disconnections
 io.on("connection", socket => {
   // Default User settings
   let newUser = {
