@@ -46,5 +46,11 @@ const themes = [
     s: "#92FE9D",
     t: "#ffffff",
     b: "#ffffff"
+  },
+  {
+    p: "#7492FF",
+    s: "#00FF94",
+    t: "#ffffff",
+    b: "#ffffff"
   }
 ];
