@@ -1,6 +1,10 @@
 /// Join Room & Get Room Info scripts
 
 async function joinRoom(roomName) {
+  if (localStorage.getItem("USERNAME") == "") {
+    errors();
+    return;
+  }
   let fixedRoomName = roomName.replace(/'/g, "");
   let activeRooms = await getRoomInfo(fixedRoomName);
   if (activeRooms.players.length >= 2) {

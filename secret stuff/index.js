@@ -17,6 +17,7 @@ const __newRoomName = document.querySelector("#roomName");
 const __activeRooms = document.querySelector("#activeRooms");
 const __createBTN = document.querySelector("#createRoom");
 const __header = document.querySelector("#headerID");
+const __error = document.querySelector("#errorMessage");
 
 let themeIndex = 0;
 let currentTheme;
@@ -39,15 +40,11 @@ __userBTN.addEventListener("click", () => {
 
 __header.addEventListener("click", () => {
   changeTheme();
-  errors();
 });
 
 __createBTN.addEventListener("click", async () => {
   // Send request to create room
-  if (localStorage.getItem("USERNAME") == "") {
-    errors();
-    return;
-  }
+  if (!hasUsername()) return;
   const __passwordCheck = document.querySelector(".check");
   const __passwordFieldC = document.querySelector("#passwordFieldC");
   let isPrivate = __passwordCheck.classList.contains("checked");
@@ -132,6 +129,7 @@ function displayAllRooms() {
 
 // Private Room Request
 async function enterPrivate(room) {
+  if (!hasUsername()) return;
   eRoom();
   const roomInfo = await getRoomInfo(room);
   const __passwordField = document.querySelector("#passwordField");
@@ -139,6 +137,8 @@ async function enterPrivate(room) {
   __joinPrivateBTN.addEventListener("click", () => {
     if (__passwordField.value === roomInfo.password) {
       joinRoom(roomInfo.roomName);
+    } else {
+      showError("Wrong password.");
     }
   });
 }
@@ -161,4 +161,17 @@ function changeTheme() {
   root.style.setProperty("--s-color", themes[themeIndex].s);
   root.style.setProperty("--t-color", themes[themeIndex].t);
   root.style.setProperty("--body-color", themes[themeIndex].b);
+}
+
+function hasUsername() {
+  if (localStorage.getItem("USERNAME") == "") {
+    showError("Please choose a username.");
+    return false;
+  }
+  return true;
+}
+
+function showError(err) {
+  __error.innerHTML = `${err}`;
+  errors();
 }

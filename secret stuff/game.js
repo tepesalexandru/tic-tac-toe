@@ -22,6 +22,26 @@ const __sendButton = document.querySelector("#send");
 const __message = document.querySelector("#message");
 const __output = document.querySelector("#output");
 const __chat = document.querySelector("#chat-window");
+const __header = document.querySelector("#headerID");
+
+let themeIndex = 0;
+let currentTheme;
+let numberOfThemes = themes.length;
+
+const root = document.documentElement;
+
+__header.addEventListener("click", () => {
+  changeTheme();
+});
+
+function changeTheme() {
+  themeIndex++;
+  themeIndex = themeIndex % numberOfThemes;
+  root.style.setProperty("--p-color", themes[themeIndex].p);
+  root.style.setProperty("--s-color", themes[themeIndex].s);
+  root.style.setProperty("--t-color", themes[themeIndex].t);
+  root.style.setProperty("--body-color", themes[themeIndex].b);
+}
 
 // Extract Room Name from URI Params
 const queryString = window.location.search;
