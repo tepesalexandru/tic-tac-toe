@@ -3,8 +3,8 @@
 :root {
   --p-font: "Lobster", cursive;
   --s-font: "Nunito", sans-serif;
-  --p-color: #00c9ff;
-  --s-color: #92fe9d;
+  --p-color: #7492FF;
+  --s-color: #00FF94;
   --t-color: #ffffff;
   --b-color: #ffffff;
 }
@@ -118,7 +118,6 @@ header {
   word-break: break-word;
 }
 
-#room:nth-child(even),
 #board button:nth-child(even) {
   background: var(--s-color) !important;
 }
@@ -181,8 +180,8 @@ i {
 
 .roomOptions {
   opacity: 0;
-  filter: brightness(0.9);
-  background: var(--b-color) !important;
+  filter: brightness(0.3);
+  background: var(--b-color)  !important;
   pointer-events: none;
 }
 
@@ -249,7 +248,26 @@ i {
   height: 60vh;
   border: 2px solid var(--p-color);
   border-radius: 1rem;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.8rem;
+  border-radius: 20rem;
+  background-color: transparent;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 1rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--p-color);
+  border-radius: 1rem;
 }
 
 #output p {
