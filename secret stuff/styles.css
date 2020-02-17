@@ -21,16 +21,6 @@ i {
   font-size: 1.6rem !important;
 }
 
-@media screen and (max-width: 640px) {
-  i {
-    font-size: 1.5rem !important;
-  }
-
-  #room:nth-child(even) {
-    background: var(--p-color) !important;
-  }
-}
-
 body {
   background: var(--b-color);
 }
@@ -162,7 +152,7 @@ i {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 6rem;
+  font-size: 5rem;
   color: white;
   font-weight: 900;
 }
@@ -248,8 +238,7 @@ i {
   height: 50vh;
   border: 2px solid var(--p-color);
   border-radius: 1rem;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 /* width */
@@ -327,5 +316,19 @@ i {
 
   100% {
     opacity: 100%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  i {
+    font-size: 1.5rem !important;
+  }
+
+  #room:nth-child(even) {
+    background: var(--p-color) !important;
+  }
+
+  #board span {
+    font-size: 3.8rem;
   }
 }
