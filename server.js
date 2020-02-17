@@ -98,6 +98,7 @@ io.on("connection", socket => {
 
   socket.on("messageSent", data => {
     io.to(`${data.room}`).emit("messageOutput", data);
+    socket.broadcast.to(`${data.room}`).emit("playSound");
   });
 });
 

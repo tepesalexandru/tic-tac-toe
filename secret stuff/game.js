@@ -133,10 +133,13 @@ socket.on("connect", async () => {
   __sendButton.addEventListener("click", () => {
     sendMessage();
   });
+  socket.on("playSound", () => {
+    audio.play();
+  })
   socket.on("messageOutput", data => {
     __output.innerHTML += `<p><strong>${data.player}: ${data.message}</strong></p>`;
     __chat.scrollTop = __chat.scrollHeight;
-    audio.play();
+    
   });
   function sendMessage() {
     socket.emit("messageSent", {
