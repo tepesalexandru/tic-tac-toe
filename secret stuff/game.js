@@ -135,6 +135,7 @@ socket.on("connect", async () => {
   });
   socket.on("playSound", () => {
     audio.play();
+    document.querySelector(".pop").classList.add("popanimate");
   })
   socket.on("messageOutput", data => {
     __output.innerHTML += `<p><strong>${data.player}: ${data.message}</strong></p>`;
