@@ -127,13 +127,14 @@
               id="message"
               type="text"
               placeholder="Message"
-              class="text-xl p-color font-semibold p-2"
+              class="text-xl p-color font-semibold p-2 w-3/4"
             />
             <button id="send"><i class="bx bx-send p-color ml-2"></i></button>
           </div>
         </div>
         <p
-          class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none"
+          onclick="remove()"
+          class="mx-auto p-color opacity-75 font-semibold text-center mt-4 cursor-pointer pointer-events-auto"
         >
           Tap to Cancel
         </p>
@@ -168,7 +169,8 @@
           </button>
         </div>
         <p
-          class="mx-auto p-color opacity-75 font-semibold text-center mt-4 pointer-events-none"
+          onclick="remove()"
+          class="mx-auto p-color opacity-75 font-semibold text-center mt-4 cursor-pointer pointer-events-auto"
         >
           Tap to Cancel
         </p>

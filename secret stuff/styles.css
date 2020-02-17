@@ -54,25 +54,25 @@ input {
 ::-webkit-input-placeholder {
   color: var(--t-color) !important;
   font-size: 1rem !important;
-  opacity: 75%;
+  opacity: 50%;
 }
 
 ::-moz-placeholder {
   color: var(--t-color) !important;
   font-size: 1rem !important;
-  opacity: 75%;
+  opacity: 50%;
 }
 
 ::-ms-placeholder {
   color: var(--t-color) !important;
   font-size: 1rem !important;
-  opacity: 75%;
+  opacity: 50%;
 }
 
 ::placeholder {
   color: var(--t-color) !important;
   font-size: 1rem !important;
-  opacity: 75%;
+  opacity: 50%;
 }
 
 body {
@@ -245,7 +245,7 @@ i {
 }
 
 #chat-window {
-  height: 60vh;
+  height: 50vh;
   border: 2px solid var(--p-color);
   border-radius: 1rem;
   overflow-x: hidden;
