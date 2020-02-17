@@ -1,3 +1,6 @@
+var audio = new Audio('sound.mp3');
+
+
 var socket = io.connect(link, {
   "sync disconnect on unload": true
 });
@@ -133,6 +136,7 @@ socket.on("connect", async () => {
   socket.on("messageOutput", data => {
     __output.innerHTML += `<p><strong>${data.player}: ${data.message}</strong></p>`;
     __chat.scrollTop = __chat.scrollHeight;
+    audio.play();
   });
   function sendMessage() {
     socket.emit("messageSent", {
