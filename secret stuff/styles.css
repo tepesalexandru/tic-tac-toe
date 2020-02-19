@@ -174,7 +174,7 @@ i {
 
 .roomOptions {
   opacity: 0;
-  filter: brightness(0.3);
+  filter: brightness(0.95);
   background: var(--b-color)  !important;
   pointer-events: none;
 }
@@ -335,7 +335,7 @@ i {
 
 @media screen and (max-width: 640px) {
   i {
-    font-size: 1.5rem !important;
+    font-size: 1.5rem;
   }
 
   #room:nth-child(even) {
