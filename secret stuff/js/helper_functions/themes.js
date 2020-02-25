@@ -6,9 +6,9 @@ const themes = [
     b: "#ffffff"
   },
   {
-    p: "#E9A13B",
-    s: "#F0C467",
-    t: "#000000",
+    p: "#D78F2A",
+    s: "#F8D180",
+    t: "#ffffff",
     b: "#000000"
   },
   {

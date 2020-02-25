@@ -48,25 +48,21 @@ input {
 ::-webkit-input-placeholder {
   color: var(--t-color) !important;
   font-size: 1rem !important;
-  opacity: 50%;
 }
 
 ::-moz-placeholder {
   color: var(--t-color) !important;
   font-size: 1rem !important;
-  opacity: 50%;
 }
 
 ::-ms-placeholder {
   color: var(--t-color) !important;
   font-size: 1rem !important;
-  opacity: 50%;
 }
 
 ::placeholder {
   color: var(--t-color) !important;
   font-size: 1rem !important;
-  opacity: 50%;
 }
 
 body {
@@ -136,12 +132,10 @@ i {
 #playerNames p {
   width: 48%;
   background: var(--p-color);
-  opacity: 80%;
 }
 
 #messages {
   background: var(--p-color);
-  opacity: 80%;
 }
 
 #board button {
