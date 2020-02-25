@@ -6,6 +6,12 @@ const themes = [
     b: "#ffffff"
   },
   {
+    p: "#E9A13B",
+    s: "#F0C467",
+    t: "#000000",
+    b: "#000000"
+  },
+  {
     p: "#FF5F6D",
     s: "#FFC371",
     t: "#ffffff",

@@ -35,7 +35,7 @@ function changeTheme() {
   root.style.setProperty("--p-color", themes[themeIndex].p);
   root.style.setProperty("--s-color", themes[themeIndex].s);
   root.style.setProperty("--t-color", themes[themeIndex].t);
-  root.style.setProperty("--body-color", themes[themeIndex].b);
+  root.style.setProperty("--b-color", themes[themeIndex].b);
 }
 
 // Extract Room Name from URI Params

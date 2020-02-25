@@ -254,7 +254,7 @@ i {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
 
 /* Handle */
@@ -264,10 +264,10 @@ i {
 }
 
 #output p {
-  padding: 14px 0px;
-  margin: 0 20px;
+  padding: 0.9rem 0;
+  margin: 0 1.25rem;
   border-bottom: 1px solid #e9e9e9;
-  color: #555;
+  color: var(--t-color);
   text-align: left;
 }
 
@@ -297,9 +297,9 @@ i {
   white-space: nowrap;
 }
 
-.blink {
+/* .blink {
   animation: blink 2s infinite;
-}
+} */
 
 .pop {
   transform: scale(0) translateY(2px);
@@ -311,7 +311,7 @@ i {
   opacity: 1;
 }
 
-@keyframes blink {
+/* @keyframes blink {
   0% {
     opacity: 100%;
   }
@@ -331,7 +331,7 @@ i {
   100% {
     opacity: 100%;
   }
-}
+} */
 
 @media screen and (max-width: 640px) {
   i {
